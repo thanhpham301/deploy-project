@@ -1,15 +1,11 @@
 import '../App.css';
 
 function Header(){
-
-
-
-
-    
     return (
       <div>
         <div className="flex relative w-full justify-center h-fit items-center p-[10px]">
-          <span className="absolute left-[70px]"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" 
+          <span className="absolute left-[70px]"><img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" 
           className="w-[100px] h-[30px]" alt=""/></span>
           <ul class="list-none flex">
               <li className="m-[10px]"><span href="" className="text-[20px]">Men</span></li>
