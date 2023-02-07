@@ -1,9 +1,20 @@
 import Nav from './Nav';
+import Category from './Category';
+import Gender from './Gender';
+import Products from './Products';
 
 function Body () {
     return (
         <div>
             <Nav />
+            <div className='flex'>
+                {/* Description */}
+                <div className='flex-initial w-[200px] ml-[70px]'>
+                    <Category />
+                    <Gender />
+                </div >
+                <Products />
+            </div>
         </div>
     )
 }
