@@ -23,8 +23,8 @@ function Header(){
               <span className="m-[10px]"><i className="fas fa-bags-shopping text-[20px]"></i></span>
               <div class="m-[10px] relative">
                   <input type="checkbox" id="checkbox-tonggle-signin" className="hidden"/>
-                  <label for="checkbox-tonggle-signin" className="text-[20px] cursor-pointer">Sign In</label>
-                  <form id="myform" action="" className="header-sub-signin hidden flex flex-col absolute 
+                  <label for="checkbox-tonggle-signin" className="label-signin text-[20px] cursor-pointer">Sign In</label>
+                  <form action="" className="header-sub-signin hidden flex flex-col absolute 
                       text-center right-[-55px] top-[40px] bg-slate-50 p-[10px] rounded-[20px]">
                       <input type="email" placeholder="Email" 
                       className="border-solid rounded-[20px] bg-[#f5f5f5] text-[15px] h-[30px] 

@@ -2,6 +2,7 @@ import Nav from './Nav';
 import Category from './Category';
 import Gender from './Gender';
 import Products from './Products';
+import { product } from '../ProductDetails/Shoes';
 
 function Body () {
     return (
@@ -13,7 +14,7 @@ function Body () {
                     <Category />
                     <Gender />
                 </div >
-                <Products />
+                <Products  />
             </div>
         </div>
     )

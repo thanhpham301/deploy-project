@@ -1,14 +1,15 @@
 #checkbox-tonggle-signin:checked ~.header-sub-signin {
   display: block;
-
+  
 }
-
+.label-signin:checked ~.header-sub-signin {
+  transition: all 3s ease-in-out;
+}
 .product:hover .description {
   display: none;
 }
 .product:hover .children {
   display: flex;
 }
-.children {
-  transition: all 2s linear;
-}
+
+

@@ -1,5 +1,7 @@
+import Products from "./Products";
 
 function Category() {
+    
     return (
         <ul 
             // key={uuidv4()} 
