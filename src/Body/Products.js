@@ -10,6 +10,7 @@ function Product(props) {
       <div className='description'>
         <h1 className='font-medium'>{props.name}</h1>
         <p className='text-teal-500'>{props.distribute}</p>
+        {/* toán tử ba ngôi if else */}
         <p className='text-teal-500'>{props.colors > 1 ? props.colors + " Colours" : props.colors + " Colour"}</p>
         <p>{props.price}</p>
       </div>
@@ -21,6 +22,7 @@ function Product(props) {
     </div>
   )
 };
+
 function Products () {
   const [clickCategory, setClickCategory] = useState(product);
 
@@ -28,8 +30,15 @@ function Products () {
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {clickCategory.map((item, index) => {
-          return <Product key={index} id={item.id} img={item.img} name={item.name} distribute={item.distribute} colors={item.colors.length}  price={item.price} gender={item.gender} >
-            {item.colors}
+          return <Product 
+          key={index} 
+          id={item.id} 
+          img={item.img} 
+          name={item.name} 
+          distribute={item.distribute} 
+          colors={item.colors.length}  
+          price={item.price} 
+          gender={item.gender} > {item.colors}
           </Product>
           })}
         </div>
