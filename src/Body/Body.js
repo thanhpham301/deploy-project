@@ -3,11 +3,14 @@ import Category from './Category';
 import Gender from './Gender';
 import Products from './Products';
 import { product } from '../ProductDetails/Shoes';
-import { useState, createContext } from 'react';
+import { useState } from 'react';
 
 function Body () {
-    const [updateData, setUpdateData] = useState("");
-    const Context = createContext();
+    const [updateData, setUpdateData] = useState();
+    const handleUpdate = (newData) => {
+        setUpdateData(newData)
+    }
+    console.log(updateData)
     return (
         <div>
             <Nav />
@@ -17,7 +20,7 @@ function Body () {
                     <Category  />
                     <Gender />
                 </div >
-                <Products  />
+                <Products update={handleUpdate} />
             </div>
         </div>
     )

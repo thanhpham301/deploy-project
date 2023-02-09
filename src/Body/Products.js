@@ -23,8 +23,13 @@ function Product(props) {
   )
 };
 
-function Products () {
+function Products (props) {
   const [clickCategory, setClickCategory] = useState(product);
+  useEffect (() => {
+    props.update(clickCategory)
+  },clickCategory)
+  
+  
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {clickCategory.map((item, index) => {
