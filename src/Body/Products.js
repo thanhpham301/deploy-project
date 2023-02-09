@@ -1,5 +1,5 @@
 import { product } from "../ProductDetails/Shoes";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Category from "./Category";
 
@@ -25,8 +25,6 @@ function Product(props) {
 
 function Products () {
   const [clickCategory, setClickCategory] = useState(product);
-
-
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {clickCategory.map((item, index) => {
