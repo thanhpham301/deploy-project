@@ -24,17 +24,11 @@ function Product(props) {
 };
 
 function Products (props) {
-  const [clickCategory, setClickCategory] = useState(product);
-  useEffect (() => {
-    props.update(clickCategory)
-  },clickCategory)
 
   // Use catToShow to control the display by filtering main data with the keyword
   // If keyword is "all", keeping the original data. If not, using filter, buit-in array function, to apply
-  console.log(props.catToShow)
   const dataToShow = props.catToShow === "all"? product : product.filter(item => item.category === props.catToShow)
   console.log(dataToShow)
-  
   
     return (
         <div className="info grid grid-cols-3 gap-[50px]">

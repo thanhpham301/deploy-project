@@ -13,7 +13,6 @@ function Body () {
 
     //test
     const [data, setData] = useState(product)
-
     // Products and Category components use a mutual variable for displaying products
     // Click on a category => Change products displayed
     // Need an array containing all unique categories and a variable to control the filter keyword.
@@ -29,8 +28,6 @@ function Body () {
         setFilterKeyword(newCat)
     }
     // Use filterKeyword to control display in Products component by sending this to the component as catToShow
-
-    
     // console.log(filterKeyword)
     //stop test
 
