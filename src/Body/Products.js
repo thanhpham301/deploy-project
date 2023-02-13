@@ -1,5 +1,5 @@
-import { product } from "../ProductDetails/Shoes";
-import { useEffect, useState, useContext } from "react";
+import { product } from "../Data/Shoes";
+import { useEffect, useState, useContext, useRef, useLayoutEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Category from "./Category";
 
@@ -24,11 +24,45 @@ function Product(props) {
 };
 
 function Products (props) {
+  // Tạo 1 mảng để chứa đựng các giá trị được filter, ví dụ khi click vào LifeStyle thì mảng những sản phẩm LifeStyle sẽ được lưu vào
+  // Lý do dùng useRef thì lên GPT hỏi nó useRef là gì nó nói cho rõ
+  // Nếu ở đây mà đặt cái biến arrGenderProducts = [], thì chọn LifeStyle lúc click vào checkbox Gender "Nam" thì component Products này sẽ render lại từ đầu
+  // thì arrGenderProducts thì set lại từ đầu là mảng rỗng [], đáng lý ra phải là cái mảng có chứa sản phẩm LifeStyle, do cho render lại mảng rỗng nên bị lỗi
+  // Nên phải set cho nó là useRef có giá trị là mảng []; useRef nó sẽ lưu giá trị trước đó mặc dù component này có render lại hay k 
+  let arrGenderProducts = useRef([]) 
 
-  // Use catToShow to control the display by filtering main data with the keyword
-  // If keyword is "all", keeping the original data. If not, using filter, buit-in array function, to apply
-  const dataToShow = props.catToShow === "all"? product : product.filter(item => item.category === props.catToShow)
-  console.log(dataToShow)
+  // Tạo 1 State chứa giá trị sẽ show ra màn hình
+  const [dataToShow, setDatatoShow] = useState(product)
+
+  // useEffect này đảm nhiệm phần category, mỗi click vào category nào thì setDatatoShow sẽ render theo category đó
+  // useEffect này thực thi khi props.catToShow có sự thay đổi
+  useEffect(() => {
+    // Tạo 1 biến là mảng chứa sản phẩm category khi click vào, click vào LifeStyle sẽ tạo ra mảng chứa sản phẩm LifeStyle
+    const category = props.catToShow === "all" ? product : product.filter(item => item.category === props.catToShow)
+    // Rồi đưa cái mảng đó vào setDatatoShow, nghĩa là dataToShow được set là mảng đó để render ra màn hình
+    setDatatoShow(category)
+    // Mảng arrGenderProducts được dùng useRef ban đầu sẽ được set = với mảng category được click
+    // .current là tính năng bắt buộc của useRef, sau khi set let arrGenderProducts = useRef([]) thì phía sau mỗi khi dùng biến arrGenderProducts
+    // thì phải thêm .current
+    // Mục đích set arrGenderProducts.current = category để lưu mảng LifeStyle đã được click vào biến đó,
+    // từ biến đó mình sẽ filter để lọc ra những sản phẩm chứa Gender khi click chọn
+    arrGenderProducts.current = category;
+  },[props.catToShow])
+
+  // useEffect này đảm nhiệm phần gender, mỗi click vào gender nào thì setDatatoShow sẽ render theo category đó
+  // useEffect này thực thi khi props.genderToShow có sự thay đổi
+  useEffect(() => {
+    if (props.genderToShow === "all") {
+      setDatatoShow(arrGenderProducts.current)
+    }
+    else {
+      // Tương tự useEffect ở trên, tạo 1 biến chứa sản phẩm đã được lọc theo gender khi mình click vào gender nào
+      const filtered = arrGenderProducts.current.filter((i) =>props.genderToShow.includes(i.gender))
+      // Xong mình gán cái biến đó vào setDatatoShow để dataToShow render theo mảng của filtered đã được lọc ở trên
+      setDatatoShow([...filtered])
+    }
+  },[props.genderToShow])
+
   
     return (
         <div className="info grid grid-cols-3 gap-[50px]">

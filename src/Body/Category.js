@@ -16,10 +16,6 @@ function Category({categories, updateCat}) {
                         {cat}
                     </li>
                 )}
-            
-            {/* {newCategoryArr.map((item, index) => {
-                return <li key={index} className='cursor-pointer w-fit' onClick={() => onClickCategory(item)}><span>{item}</span></li>
-            })} */}
         </ul>
     )
 }

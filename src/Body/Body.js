@@ -2,15 +2,12 @@ import Nav from './Nav';
 import Category from './Category';
 import Gender from './Gender';
 import Products from './Products';
-import { product } from '../ProductDetails/Shoes';
+import { product } from '../Data/Shoes';
 import { useState } from 'react';
+import Size from './Size';
 
 function Body () {
-    const [updateData, setUpdateData] = useState();
-    const handleUpdate = (newData) => {
-        setUpdateData(newData)
-    }
-
+    
     //test
     const [data, setData] = useState(product)
     // Products and Category components use a mutual variable for displaying products
@@ -23,15 +20,25 @@ function Body () {
     categories = Array.from(categories)
     // Set default value as "all"
     const [filterKeyword, setFilterKeyword] = useState('all')
+    // Tạo mảng chứa products đã được chọn từ list category để phục vụ cho component Gender
+    const [dataGender, setDataGender] = useState(product)
     // Send this function to Category component in order to when clicking on a category, the change will be recorded to filterKeyword
     function updateCat(newCat) {
         setFilterKeyword(newCat)
+        // Mảng dataGender sẽ được set lại dựa trên category được click chọn để đưa vào props data phần Gender
+        setDataGender(newCat === "all" ? product : product.filter(item => item.category === newCat) )
     }
     // Use filterKeyword to control display in Products component by sending this to the component as catToShow
     // console.log(filterKeyword)
     //stop test
-
-    // console.log(updateData)
+    
+    // Send this function to Gender component in order to when clicking on a gender, the change will be recorded to genderKeyword
+    const [genderKeyword, setGenderKeyword] = useState('all')
+    function updateGender(newGender) {
+        setGenderKeyword(newGender)
+    }
+    // Use genderKeyword to control display in Products component by sending this to the component as genderToShow
+    console.log(genderKeyword)
     return (
         <div>
             <Nav />
@@ -40,9 +47,10 @@ function Body () {
                 <div className='flex-initial w-[200px] ml-[70px]'>
                     {/**/}
                     <Category categories={categories} updateCat={updateCat}/>
-                    <Gender />
+                    <Gender data={dataGender} updateGender={updateGender}/>
+                    
                 </div >
-                <Products update={handleUpdate} catToShow={filterKeyword}/>
+                <Products catToShow={filterKeyword} genderToShow={genderKeyword}/>
             </div>
         </div>
     )
