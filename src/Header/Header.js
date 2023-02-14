@@ -1,18 +1,34 @@
 import '../App.css';
 import SigninBox from './SigninBox';
+import { product } from '../Data/Shoes';
+import { useState } from 'react';
+import SubMenu from './SubMenu';
 
 function Header(){
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleMouseEnter = (idx) => {
+    setActiveIndex(idx);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveIndex(null);
+  };
     return (
       <div>
-        <div className="flex relative w-full justify-center h-fit items-center p-[10px]">
+        <div className="flex relative w-full justify-center h-fit items-center p-[10px] mb-[30px]">
           <span className="absolute left-[70px]"><img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" 
           className="w-[100px] h-[30px]" alt=""/></span>
           <ul class="list-none flex">
-              <li className="m-[10px]"><span href="" className="text-[20px]">Men</span></li>
-              <li className="m-[10px]"><span href="" className="text-[20px]">Women</span></li>
-              <li className="m-[10px]"><span href="" className="text-[20px]">Kids</span></li>
-              <li className="m-[10px]"><span href="" className="text-[20px]">Sale</span></li>
+            {[...new Set(product.flatMap(item => item.gender))].map((gender, idx) => {
+              return <li key={idx} className="w-[80px] hover:text-neutral-600"
+              onMouseEnter={() => handleMouseEnter(idx)}
+              onMouseLeave={handleMouseLeave}
+              ><a href="#" className="text-[20px] relative">{gender}</a>
+              {activeIndex === idx && <SubMenu submenu={product.filter(item => item.gender === gender)}/>}
+            </li>
+            })}
           </ul>
           <div className="flex absolute right-[70px] items-center">
               <div className="m-[10px]">

@@ -5,6 +5,7 @@ import Products from './Products';
 import { product } from '../Data/Shoes';
 import { useState } from 'react';
 import Size from './Size';
+import ScrollUp from './Scrollup';
 
 function Body () {
     
@@ -39,6 +40,11 @@ function Body () {
     }
     // Use genderKeyword to control display in Products component by sending this to the component as genderToShow
     console.log(genderKeyword)
+    const [sizeKeyword, setSizeKeyword] = useState('all')
+    function updateSize (newSize) {
+        setSizeKeyword(newSize)
+    }
+    console.log(sizeKeyword)
     return (
         <div>
             <Nav />
@@ -48,10 +54,11 @@ function Body () {
                     {/**/}
                     <Category categories={categories} updateCat={updateCat}/>
                     <Gender data={dataGender} updateGender={updateGender}/>
-                    
+                    <Size dataGender={dataGender} genderKeyword={genderKeyword} updateSize={updateSize} />
                 </div >
-                <Products catToShow={filterKeyword} genderToShow={genderKeyword}/>
+                <Products catToShow={filterKeyword} genderToShow={genderKeyword} sizeToShow={sizeKeyword} />
             </div>
+            <ScrollUp />
         </div>
     )
 }

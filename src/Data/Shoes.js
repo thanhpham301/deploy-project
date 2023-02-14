@@ -13,7 +13,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+250,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [38, 39, 40]
     },
     {
       id: uuidv4(),
@@ -28,7 +28,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+200,
-      size: [35.5, 36.5, 37.5, 38.5, 39, 40]
+      size: [35.5, 36.5, 37.5]
     },
     {
       id: uuidv4(),
@@ -41,7 +41,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+200,
-      size: [35, 36, 37, 38, 39, 41]
+      size: [35, 36, 41]
     },
     {
       id: uuidv4(),
@@ -55,7 +55,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+140,
-      size: [35.5, 37, 38, 39, 40]
+      size: [38, 39, 40]
     },
     {
       id: uuidv4(),
@@ -68,7 +68,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+160,
-      size: [34, 35, 36, 38, 41]
+      size: [36, 38, 41]
     },
     {
       id: uuidv4(),
@@ -92,7 +92,7 @@ export const product = [
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/f75474b9-1b5a-4e90-bbf4-468706655042/blazer-mid-77-shoes-3Jpkm6.png"],
       gender: "Men",
       price: "$"+150.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [39, 40]
     },
     {
       id: uuidv4(),
@@ -106,7 +106,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+160.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [35.5]
     },
     {
       id: uuidv4(),
@@ -119,7 +119,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+160.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [35.5, 40]
     },
     {
       id: uuidv4(),
@@ -130,7 +130,7 @@ export const product = [
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/fbe2af03-4f91-4522-8b47-4fbd41323cd1/air-force-1-low-retro-shoes-FPRmPs.png"],
       gender: "Men",
       price: "$"+200.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [39, 40]
     },
     {
       id: uuidv4(),
@@ -141,7 +141,7 @@ export const product = [
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/451c3091-e16f-4c10-bf62-b3717aff6f35/air-jordan-2-retro-se-shoes-qq6mFg.png"],
       gender: "Women",
       price: "$"+300.00,
-      size: [35.5, 36, 37, 39, 40]
+      size: [36]
     },
     {
       id: uuidv4(),
@@ -152,7 +152,7 @@ export const product = [
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/dd274983-d36a-4c90-b376-f3247dbd059d/air-force-1-07-lv8-shoes-BbKr8Q.png"],
       gender: "Men",
       price: "$"+120.00,
-      size: [35.5, 36, 37, 38, 39, 41, 42]
+      size: [38, 39, 41, 42]
     },
     {
       id: uuidv4(),
@@ -166,7 +166,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+140.00,
-      size: [35.5, 36, 37.5, 38, 39, 40.5]
+      size: [38, 39, 40.5]
     },
     {
       id: uuidv4(),
@@ -180,7 +180,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+170.00,
-      size: [37, 38, 39, 42]
+      size: [37, 42]
     },
     {
       id: uuidv4(),
@@ -193,7 +193,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+270.00,
-      size: [35.5, 37, 38.5, 39, 40]
+      size: [38.5]
     },
     {
       id: uuidv4(),
@@ -207,7 +207,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+200.00,
-      size: [35.5, 36, 37, 38]
+      size: [36, 37, 38]
     },
     {
       id: uuidv4(),
@@ -222,7 +222,7 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+190.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [40]
     },
     {
       id: uuidv4(),
@@ -239,7 +239,7 @@ export const product = [
       ],
       gender: "Men",
       price: "$"+100.00,
-      size: [35.5, 36, 37, 38, 39, 40]
+      size: [36, 37]
     },
     {
       id: uuidv4(),
@@ -254,6 +254,6 @@ export const product = [
       ],
       gender: "Women",
       price: "$"+250.00,
-      size: [35.5, 36, 37, 38, 39, 40.5, 41, 42]
+      size: [42]
     }
   ];

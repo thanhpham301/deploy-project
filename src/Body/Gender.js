@@ -66,7 +66,7 @@ function Gender ({data, updateGender}) {
   console.log(genderArr.current);
   console.log(arrCheckedGender)
     return (
-        <div>
+        <div className='pb-[50px] border-b border-solid'>
             <h1>Gender</h1>
             {listGender.map((item, idx) => {
               return (
