@@ -1,52 +1,27 @@
 import { useEffect, useRef, useState } from "react";
+import { size } from "../Data/Cat-Gen-Size";
 
-function Size ({dataGender, genderKeyword, updateSize}) {
-  // Lọc bỏ các phần tử trùng, hàm new Set sẽ cho ra kết quả là Object
-  // Chuyển từ dạng Object sang mảng
-  // Từ phần tử chỉ chứa size là 35,36,37,..., chuyển sang phần tử dạng Object chứa biến label và isChecked => [{label: 35, isChecked: false},{label: 37, isChecked: false}]
-  const [listSize, setListSize] = useState([...new Set(dataGender.flatMap(item => item.size))].map((item) => ({
+function Size ({cateKeyword, genderKeyword, updateSize}) {
+  
+  const [listSize, setListSize] = useState(size.map((item) => ({
     label: item,
     isChecked: false
   })))
   let sizeClicked = useRef([])
   // Tạo mảng chứa những giá trị được stick khi click ô checkbox size để đưa qua Products component
   const [arrCheckedSize, setArrCheckedSize] = useState('all')
-  // const [size, setSize] = useState([])
 
   useEffect(() => {
-    let defaultSizeArr = dataGender.flatMap(item => item.size)
-    let uniqueSizes = [...new Set(defaultSizeArr)]
-    setListSize(uniqueSizes.map(item => ({
+    setListSize(size.map(item => ({
       label: item,
       isChecked: false
     })))
     setArrCheckedSize('all')
     sizeClicked.current = []
-  },[dataGender])
+  },[cateKeyword, genderKeyword])
 
-  useEffect(() => {
-    if(genderKeyword === 'all') {
-      setListSize([...new Set(dataGender.flatMap(item => item.size))].map((item) => ({
-        label: item,
-        isChecked: false
-      })))
-    }
-    else {
-      const filteredData = dataGender.filter(item => genderKeyword.includes(item.gender));
-      const sizeArrs = filteredData.flatMap(i => i.size);
-      const uniqueSizes = [...new Set(sizeArrs)];
-      const sizeList = uniqueSizes.map((item) => ({
-        label: item,
-        isChecked: false
-      }));
-      setListSize(sizeList);
-    }
-  },[genderKeyword])
-
-  console.log(listSize)
   // Tạo sự kiện khi click vào ô size sẽ hiện dấu stick ở ô được click vì ban đầu ô checkbox đang set là False, khi click sẽ set về True để hiện dáu stick
   function onChangeSize(item) {
-    
     setListSize(prev => {
       return prev.map(pr => {
         if(pr.label === item.label) {         
@@ -88,7 +63,7 @@ function Size ({dataGender, genderKeyword, updateSize}) {
                    checked={item.isChecked} 
                    value={item.label} 
                    />
-                  <label for={idx}>
+                  <label htmlFor={idx}>
                     {item.label}
                     </label><br/>
                 </div>

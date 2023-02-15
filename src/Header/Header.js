@@ -37,7 +37,7 @@ function Header(){
           
           <div className="flex absolute right-[70px] items-center">
               <div className="m-[10px]">
-                  <label for="search" className="absolute flex cursor-pointer w-[40px] h-[40px] rounded-[20px] hover:bg-neutral-300">
+                  <label htmlFor="search" className="absolute flex cursor-pointer w-[40px] h-[40px] rounded-[20px] hover:bg-neutral-300">
                       <i className="far fa-search w-full h-[32px] text-center text-[20px] pt-[10px]"></i></label>
                   <input type="text" placeholder="Search" id="search" 
                   className="rounded-[20px] bg-[#f5f5f5] text-[15px] h-[40px] hover:bg-neutral-300 pl-[40px] w-[160px]"/>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-function Category({categories, updateCat}) {
+import { category } from '../Data/Cat-Gen-Size';
+function Category({updateCat}) {
     const [activeItem, setActiveItem] = useState('all');
     function handleItemClick(item) {
         setActiveItem(item);
@@ -14,7 +15,7 @@ function Category({categories, updateCat}) {
                 >
                     All
                 </li>
-                {categories.map((cat, idx) => 
+                {category.map((cat, idx) => 
                     <li className="cursor-pointer w-fit" 
                     key={idx} 
                     onClick={() => [updateCat(`${cat}`), handleItemClick(`${cat}`)]}

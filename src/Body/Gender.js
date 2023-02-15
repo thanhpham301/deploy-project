@@ -1,25 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import { product } from "../Data/Shoes";
+import { gender } from "../Data/Cat-Gen-Size";
 
 function Gender ({data, updateGender}) {
   // Tạo mảng chỉ chứa phần tử là gender
-  let gender = data.map(item => item.gender)
   let genderArr = useRef([])
   // Tạo mảng chứa những giá trị được stick khi click ô checkbox gender để đưa qua Products component
   const [arrCheckedGender, setArrCheckedGender] = useState('all')
   // Lọc bỏ các phần tử trùng, hàm new Set sẽ cho ra kết quả là Object
   // Chuyển từ dạng Object sang mảng
   // Từ phần tử chỉ chứa gender là nam hoặc nữ, chuyển sang phần tử dạng Object chứa biến label và isChecked => [{label: Nam, isChecked: false},{label: Nữ, isChecked: false}]
-  const [listGender, setListGender] = useState([...new Set(gender)].map((item) => ({
+  const [listGender, setListGender] = useState(gender.map((item) => ({
     label: item,
     isChecked: false
   })))
-
   // Sử dụng useEffect có dependence có giá trị là {data} nghĩa là khi nào props data có thay đổi thì useEffect mới thực thi
   // props data ở đây là giá trị khi click chọn caterogy, ví dụ là đang ở mục sản phẩm LifeStyle, khi mình click qua mục Jordan thì useEffect mới thực thi
   // Khi thực thi thì ô chechbox gender sẽ render thành mặc định, trả value về false, bỏ hết dấu đã đc stick
   useEffect(() => {
-    setListGender([...new Set(gender)].map((item) => ({
+    setListGender(gender.map((item) => ({
       label: item,
       isChecked: false
     })))
@@ -77,7 +75,7 @@ function Gender ({data, updateGender}) {
                    checked={item.isChecked} 
                    value={item.label} 
                    />
-                  <label for={idx}>
+                  <label htmlFor={idx}>
                     {item.label}
                     </label><br/>
                 </div>

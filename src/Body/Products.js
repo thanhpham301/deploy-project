@@ -5,6 +5,7 @@ import Category from "./Category";
 import { Link } from 'react-router-dom';
 
 function Product(props) {
+  
   return (
     <div className="product ml-[50px]">
       <img src={props.img} alt="" className="w-[375px] h-[375px]"/>
@@ -82,11 +83,15 @@ function Products (props) {
     console.log('3333', arrSizeProducts.current)
   },[props.sizeToShow])
   console.log(dataToShow)
+  function handleOnClick(item) {
+    props.detailProduct(item)
+  }
+
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {dataToShow.map((item, index) => {
           return (
-            <Link to={`/products/${index}`} key={index}>
+            <Link to={`/products/${index}`} onClick={() => handleOnClick(item)} key={index}>
               <Product 
                 id={item.id} 
                 img={item.img} 
