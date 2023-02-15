@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Size from './Size';
 import ScrollUp from './Scrollup';
 
+
 function Body () {
     
     //test
@@ -56,7 +57,7 @@ function Body () {
                     <Gender data={dataGender} updateGender={updateGender}/>
                     <Size dataGender={dataGender} genderKeyword={genderKeyword} updateSize={updateSize} />
                 </div >
-                <Products catToShow={filterKeyword} genderToShow={genderKeyword} sizeToShow={sizeKeyword} />
+                    <Products catToShow={filterKeyword} genderToShow={genderKeyword} sizeToShow={sizeKeyword} />
             </div>
             <ScrollUp />
         </div>

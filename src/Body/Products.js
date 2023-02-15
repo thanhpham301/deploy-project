@@ -2,6 +2,7 @@ import { product } from "../Data/Shoes";
 import { useEffect, useState, useContext, useRef, useLayoutEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Category from "./Category";
+import { Link } from 'react-router-dom';
 
 function Product(props) {
   return (
@@ -84,17 +85,19 @@ function Products (props) {
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {dataToShow.map((item, index) => {
-          return (<Product 
-            key={index} 
-            id={item.id} 
-            img={item.img} 
-            name={item.name} 
-            distribute={item.distribute} 
-            colors={item.colors.length}  
-            price={item.price} 
-            gender={item.gender}> 
-             {item.colors}
-            </Product>)
+          return (
+            <Link to={`/products/${index}`} key={index}>
+              <Product 
+                id={item.id} 
+                img={item.img} 
+                name={item.name} 
+                distribute={item.distribute} 
+                colors={item.colors.length}  
+                price={item.price} 
+                gender={item.gender}> 
+                {item.colors}
+              </Product>
+            </Link>)
           })}
         </div>
     )
