@@ -69,13 +69,13 @@ function Gender ({data, updateGender}) {
             {listGender.map((item, idx) => {
               return (
                 <div key={idx}>
-                  <input id={idx} type="checkbox" 
+                  <input id={`${idx}`+"gender"} type="checkbox" 
                   onChange={() => onChangeGender(item)}
                   onClick={() => onClickGender(item)}
                    checked={item.isChecked} 
                    value={item.label} 
                    />
-                  <label htmlFor={idx}>
+                  <label htmlFor={`${idx}`+"gender"}>
                     {item.label}
                     </label><br/>
                 </div>

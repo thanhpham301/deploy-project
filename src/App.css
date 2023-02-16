@@ -12,4 +12,10 @@
   display: flex;
 }
 
+.img-input:checked + .img-label .img {
+  border: 2px solid black;
+}
 
+.size-input:checked + .size-label {
+  border: 2px solid black;
+}
