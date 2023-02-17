@@ -1,11 +1,13 @@
 import '../App.css';
 import SigninBox from './SigninBox';
 import { product } from '../Data/Shoes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SubMenu from './SubMenu';
 import { Link } from 'react-router-dom';
 
-function Header({cart}){
+function Header(){
+  
+  
   // const [activeIndex, setActiveIndex] = useState(null);
 
   // const handleMouseEnter = (idx) => {
@@ -46,8 +48,8 @@ function Header({cart}){
               </div>
               <Link to="/cart">
                 <span className="relative block m-[10px] "><i className="fas fa-bags-shopping text-[20px]"></i>
-                  <p className='absolute mt-[-35px] ml-[20px] text-center p-[5px]'>
-                    {cart.length}</p>
+                  {/* <p className='absolute mt-[-35px] ml-[20px] text-center p-[5px]'>
+                    {lengthCart}</p> */}
                 </span>
               </Link>
               <SigninBox />
