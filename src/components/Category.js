@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { category } from '../data/Cat-Gen-Size';
+import { category } from '../Data/Cat-Gen-Size';
 function Category({updateCat}) {
     const [activeItem, setActiveItem] = useState('all');
     function handleItemClick(item) {

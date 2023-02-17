@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { gender } from "../data/Cat-Gen-Size";
+import { gender } from "../Data/Cat-Gen-Size";
 
 function Gender ({data, updateGender}) {
   // Tạo mảng chỉ chứa phần tử là gender
@@ -61,8 +61,7 @@ function Gender ({data, updateGender}) {
   }
   // props updateGender sẽ được cập nhật mỗi khi mảng arrCheckedGender thay đổi, arrCheckedGender thay đổi khi được click sự kiện trên
   updateGender(arrCheckedGender)
-  console.log(genderArr.current);
-  console.log(arrCheckedGender)
+  
     return (
         <div className='pb-[50px] border-b border-solid'>
             <h1>Gender</h1>

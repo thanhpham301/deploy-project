@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { size } from "../data/Cat-Gen-Size";
+import { size } from "../Data/Cat-Gen-Size";
 
 function Size ({cateKeyword, genderKeyword, updateSize}) {
   

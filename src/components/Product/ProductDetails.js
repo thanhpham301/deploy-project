@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import '../../App.css';
 
-function ProductDetails({detailItem, cart, order}) {
-  const { id } = useParams();
-  const cartProduct = useRef([])
+function ProductDetails({detailItem, cart}) {
+  useParams();
   const [productImg, setProductImg] = useState("")
   const [productSize, setProductSize] = useState("")
   const handleImgChange = (event) => {
@@ -27,24 +26,12 @@ function ProductDetails({detailItem, cart, order}) {
       size: productSize,
       price: detailItem.price
     }
-    cartProduct.current.push(productData)
-    console.log(cartProduct.current)
+
+    cart(productData)
     setProductImg("")
     setProductSize("")
+    
   }
-  cart(cartProduct.current)
-  // useEffect(() =>{
-  //   console.log(order)
-  //   if(order === null){
-  //     cart(cartProduct.current)
-  //   }
-  //   else {
-  //     cartProduct.current = cartProduct.current.filter((item, idx) => idx !== order)
-  //     cart(cartProduct.current)
-  //   }
-  //   console.log(cartProduct.current)
-  // },[order])
-  
   
   return (
     <form onSubmit={handleSubmit}>
@@ -62,14 +49,14 @@ function ProductDetails({detailItem, cart, order}) {
             {detailItem.colors.map((item, idx) => {
               return (
                 <div key={idx}>
-                  <input id={`${idx}`+"img"} 
+                  <input id={`${idx} img`} 
                   type='radio' 
                   value={item} 
                   onChange={handleImgChange}
                   checked={productImg === item} 
                   name="img" className='img-input hidden'
                   />
-                  <label for={`${idx}`+"img"} className="img-label">
+                  <label htmlFor={`${idx} img`} className="img-label">
                     <img className='img w-[70px] h-[70px] mr-[10px] mt-[10px] rounded-[5px] border hover:border-black ' 
                     src={item} alt=""/>
                   </label>
@@ -78,19 +65,19 @@ function ProductDetails({detailItem, cart, order}) {
             })}
           </div>
           <h1 className='mt-[35px] mb-[30px] text-[20px]'>Select Size</h1>
-          <div className="grid grid-cols-3 mt-[15px] mb-[50px] gap-[7px]">
+          <div className="grid grid-cols-3 mb-[50px] gap-[7px] h-fit w-full">
             {detailItem.size.map((item, idx) => {
               return (
                 <div key={idx}>
-                  <input id={`${idx}`+"size"} 
+                  <input id={`${idx} size`} 
                   type='radio' 
                   value={item} 
                   onChange={handleSizeChange} 
                   checked={productSize == item} 
                   name="size" className='size-input hidden' />
-                  <label htmlFor={`${idx}`+"size"} 
-                  className='size-label border rounded-[5px] hover:border-black py-[20px] px-[30px]'>
-                    {"EU "+`${item}`}
+                  <label htmlFor={`${idx} size`} 
+                  className='size-label flex inline-block border rounded-[5px] hover:border-black w-full h-[60px] justify-center items-center'>
+                    {`EU ${item}`}
                   </label>
                 </div>
               )

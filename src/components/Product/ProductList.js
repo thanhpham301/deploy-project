@@ -1,7 +1,6 @@
-import { product } from "../../data/Shoes";
-import { useEffect, useState, useContext, useRef, useLayoutEffect } from "react";
+import { product } from "../../Data/Shoes";
+import { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import Category from "../Category";
 import { Link } from 'react-router-dom';
 
 function Product(props) {
@@ -26,7 +25,7 @@ function Product(props) {
 };
 
 function Products (props) {
-  console.log(props.sizeToShow)
+  
   // Tạo 1 mảng để chứa đựng các giá trị được filter, ví dụ khi click vào LifeStyle thì mảng những sản phẩm LifeStyle sẽ được lưu vào
   // Lý do dùng useRef thì lên GPT hỏi nó useRef là gì nó nói cho rõ
   // Nếu ở đây mà đặt cái biến arrGenderProducts = [], thì chọn LifeStyle lúc click vào checkbox Gender "Nam" thì component Products này sẽ render lại từ đầu
@@ -36,7 +35,7 @@ function Products (props) {
   const arrSizeProducts = useRef([])
   // Tạo 1 State chứa giá trị sẽ show ra màn hình
   const [dataToShow, setDatatoShow] = useState(product)
-  console.log(arrSizeProducts.current)
+  
   // useEffect này đảm nhiệm phần category, mỗi click vào category nào thì setDatatoShow sẽ render theo category đó
   // useEffect này thực thi khi props.catToShow có sự thay đổi
   useEffect(() => {
@@ -50,7 +49,7 @@ function Products (props) {
     // Mục đích set arrGenderProducts.current = category để lưu mảng LifeStyle đã được click vào biến đó,
     // từ biến đó mình sẽ filter để lọc ra những sản phẩm chứa Gender khi click chọn
     arrGenderProducts.current = category;
-    console.log('1111', arrGenderProducts.current)
+    
   },[props.catToShow, props.sizeToShow])
 
   // useEffect này đảm nhiệm phần gender, mỗi click vào gender nào thì setDatatoShow sẽ render theo category đó
@@ -65,10 +64,10 @@ function Products (props) {
       const filteredGender = arrGenderProducts.current.filter((i) =>props.genderToShow.includes(i.gender))
       // Xong mình gán cái biến đó vào setDatatoShow để dataToShow render theo mảng của filtered đã được lọc ở trên
       setDatatoShow(filteredGender)
-      console.log(filteredGender)
+      
       arrSizeProducts.current = filteredGender
     }
-    console.log('2222', arrSizeProducts.current)
+    
   },[props.genderToShow, props.sizeToShow])
   
 
@@ -80,9 +79,9 @@ function Products (props) {
       const filteredSize = arrSizeProducts.current.filter(i => props.sizeToShow.every(element => i.size.includes(element)))
       setDatatoShow(filteredSize)
     }
-    console.log('3333', arrSizeProducts.current)
+    
   },[props.sizeToShow])
-  console.log(dataToShow)
+  
   function handleOnClick(item) {
     props.detailProduct(item)
   }

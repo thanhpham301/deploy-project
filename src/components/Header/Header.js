@@ -1,6 +1,6 @@
 import '../../App.css';
 import SigninBox from './SigninBox';
-import { product } from '../../data/Shoes';
+import { product } from '../../Data/Shoes';
 import { useEffect, useState } from 'react';
 import SubMenu from './SubMenu';
 import { Link } from 'react-router-dom';
