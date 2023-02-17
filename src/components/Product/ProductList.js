@@ -1,7 +1,7 @@
-import { product } from "../Data/Shoes";
+import { product } from "../../data/Shoes";
 import { useEffect, useState, useContext, useRef, useLayoutEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import Category from "./Category";
+import Category from "../Category";
 import { Link } from 'react-router-dom';
 
 function Product(props) {

@@ -1,10 +1,10 @@
-import Nav from './Nav';
-import Category from './Category';
-import Gender from './Gender';
-import Products from './Products';
+import Nav from '../../components/Nav';
+import Category from '../../components/Category';
+import Gender from '../../components/Gender';
+import Products from '../../components/Product/ProductList';
 import { useState } from 'react';
-import Size from './Size';
-import ScrollUp from './Scrollup';
+import Size from '../../components/Size';
+import ScrollUp from '../../components/Scrollup';
 
 
 function Body ({onProductClick}) {

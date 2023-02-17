@@ -1,6 +1,6 @@
-import '../App.css';
+import '../../App.css';
 import SigninBox from './SigninBox';
-import { product } from '../Data/Shoes';
+import { product } from '../../data/Shoes';
 import { useEffect, useState } from 'react';
 import SubMenu from './SubMenu';
 import { Link } from 'react-router-dom';
@@ -26,8 +26,8 @@ function Header(){
             className="w-[100px] h-[30px]" alt=""/></span>
           </Link>
           <Link to='/products' >
-            <h1 class="list-none flex">
-              Product
+            <h1 class="list-none flex text-2xl font-bold">
+              Buy Here !!!
               {/* {[...new Set(product.flatMap(item => item.gender))].map((gender, idx) => {
                 return <li key={idx} className="w-[80px] hover:text-neutral-600"
                 onMouseEnter={() => handleMouseEnter(idx)}
