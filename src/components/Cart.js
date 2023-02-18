@@ -17,7 +17,7 @@ function Cart ({cart, deleteCart}) {
     return (
         <div className="flex justify-around flex-wrap">
             <div>
-                <h1 className="mb-[30px] text-[40px]">Bag</h1>
+                <h1 className="mb-[30px] text-[40px]">Your Choice</h1>
                 {cartToShow.map((item, idx) => {
                     return (
                         <div key={idx} className="flex mt-[20px] pb-[30px] border-b-[1px] w-[600px]">
