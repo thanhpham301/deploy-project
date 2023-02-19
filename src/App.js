@@ -19,7 +19,6 @@ function App() {
     
     debug.current.push(product)
     setCart(debug.current)
-    
   }
   
   function delProduct(itemDeleted){

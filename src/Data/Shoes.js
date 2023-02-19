@@ -12,7 +12,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/2c8f45ad-015b-41b1-8e60-18ebefa75bd8/air-max-terrascape-97-shoes-3cGxRv.png"
       ],
       gender: "Men",
-      price: "$"+250,
+      price:  250,
       size: [38, 39, 40]
     },
     {
@@ -27,7 +27,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/30e8a9cb-09fd-4b17-9d2a-46c62024cf96/air-jordan-1-elevate-high-shoes-rKPNHR.png"
       ],
       gender: "Women",
-      price: "$"+200,
+      price:  200,
       size: [35.5, 36.5, 37.5]
     },
     {
@@ -40,7 +40,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c03b25b2-8000-4c23-954c-ce6976173c23/jordan-delta-3-low-shoes-fQrm6Q.png",
       ],
       gender: "Men",
-      price: "$"+200,
+      price:  200,
       size: [35, 36, 41]
     },
     {
@@ -54,7 +54,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/b869d293-ba48-4fd2-9208-de80b3aacf93/pegasus-flyease-easy-on-off-road-running-shoes-RlnnC7.png"
       ],
       gender: "Men",
-      price: "$"+140,
+      price:  140,
       size: [38, 39, 40]
     },
     {
@@ -67,7 +67,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/78661b90-3c1b-499a-bebc-499aeecea01a/air-force-1-07-lx-shoe-Jpw4wf.png"
       ],
       gender: "Women",
-      price: "$"+160,
+      price:  160,
       size: [36, 38, 41]
     },
     {
@@ -80,7 +80,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/48415867-4d25-491c-b6aa-ff016d20bae2/air-max-excee-shoes-pm3lgf.png"
       ],
       gender: "Women",
-      price: "$"+120,
+      price:  120,
       size: [35.5, 36, 37, 38, 39, 40]
     },
     {
@@ -91,7 +91,7 @@ export const product = [
       category: "Lifestyle",
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/f75474b9-1b5a-4e90-bbf4-468706655042/blazer-mid-77-shoes-3Jpkm6.png"],
       gender: "Men",
-      price: "$"+150.00,
+      price:  150,
       size: [39, 40]
     },
     {
@@ -105,7 +105,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/4f2b31c3-e0d4-4895-b505-37782acd639d/air-jordan-1-mid-se-shoes-pZbfP8.png"
       ],
       gender: "Men",
-      price: "$"+160.00,
+      price:  160,
       size: [35.5]
     },
     {
@@ -118,7 +118,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/09a837bc-3a64-45c7-81fb-b97bf29bbe2f/air-jordan-1-mid-se-shoes-SXFQqx.png"
       ],
       gender: "Women",
-      price: "$"+160.00,
+      price:  160,
       size: [35.5, 40]
     },
     {
@@ -129,7 +129,7 @@ export const product = [
       category: "Lifestyle",
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/fbe2af03-4f91-4522-8b47-4fbd41323cd1/air-force-1-low-retro-shoes-FPRmPs.png"],
       gender: "Men",
-      price: "$"+200.00,
+      price:  200,
       size: [39, 40]
     },
     {
@@ -140,7 +140,7 @@ export const product = [
       category: "Jordan",
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/451c3091-e16f-4c10-bf62-b3717aff6f35/air-jordan-2-retro-se-shoes-qq6mFg.png"],
       gender: "Women",
-      price: "$"+300.00,
+      price:  300,
       size: [36]
     },
     {
@@ -151,7 +151,7 @@ export const product = [
       category: "Lifestyle",
       colors: ["https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/dd274983-d36a-4c90-b376-f3247dbd059d/air-force-1-07-lv8-shoes-BbKr8Q.png"],
       gender: "Men",
-      price: "$"+120.00,
+      price:  120,
       size: [38, 39, 41, 42]
     },
     {
@@ -165,7 +165,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/6fbab56c-2a27-4395-92c3-95f0b6989eac/air-jordan-1-zoom-air-comfort-shoes-DMnp24.png"
       ],
       gender: "Women",
-      price: "$"+140.00,
+      price:  140,
       size: [38, 39, 40.5]
     },
     {
@@ -179,7 +179,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/7e7a0763-295b-457f-90fd-365fdfa135ed/air-zoom-pegasus-39-shield-weatherised-road-running-shoes-dcpVxH.png"
       ],
       gender: "Men",
-      price: "$"+170.00,
+      price:  170,
       size: [37, 42]
     },
     {
@@ -192,7 +192,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/801af3d5-f27d-4506-b87e-f039e14d9889/air-zoom-alphafly-next-2-road-racing-shoes-RPr2Bt.png"
       ],
       gender: "Women",
-      price: "$"+270.00,
+      price:  270,
       size: [38.5]
     },
     {
@@ -206,7 +206,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/a3cf1b14-5bb8-48da-ba84-e1f5156f19b2/air-jordan-xxxvii-pf-basketball-shoes-FxrCGw.png"
       ],
       gender: "Men",
-      price: "$"+200.00,
+      price:  200,
       size: [36, 37, 38]
     },
     {
@@ -221,7 +221,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c016a78c-ecfa-461d-b426-b49bc1bc59f9/custom-nike-air-zoom-pegasus-39-by-you.png"
       ],
       gender: "Women",
-      price: "$"+190.00,
+      price:  190,
       size: [40]
     },
     {
@@ -238,7 +238,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/cbe91528-7e28-41ca-b9a7-1ae765f70a5c/air-zoom-rival-fly-3-road-racing-shoes-XbhTCL.png"
       ],
       gender: "Men",
-      price: "$"+100.00,
+      price:  100,
       size: [36, 37]
     },
     {
@@ -253,7 +253,7 @@ export const product = [
         "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/d7e19fd5-da3a-412e-aab6-eb7b29da1dbc/revolution-6-next-nature-road-running-shoes-vjrrwc.png"
       ],
       gender: "Women",
-      price: "$"+250.00,
+      price:  250,
       size: [42]
     }
   ];
