@@ -1,4 +1,4 @@
-import { product } from "../../Data/Shoes";
+import { product } from "../../data/Shoes";
 import { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { gender } from "../Data/Cat-Gen-Size";
+import { gender } from "../data/Cat-Gen-Size";
 
 function Gender ({data, updateGender}) {
   // Tạo mảng chỉ chứa phần tử là gender
