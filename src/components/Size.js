@@ -52,12 +52,13 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
   }
   updateSize(arrCheckedSize)
     return (
-        <div className='pb-[50px] border-b border-solid'>
-            <h1>Size</h1>
+      <div>
+          <h1>Size</h1>
+          <div className='pb-[50px] border-b border-solid grid grid-cols-2'>
             {listSize.map((item, idx) => {
               return (
-                <div key={idx}>
-                  <input id={idx} type="checkbox" 
+                <div key={idx} className="grid grid-cols-2">
+                  <input id={idx} type="checkbox" className="hidden"
                   onChange={() => onChangeSize(item)}
                   onClick={() => onClickSize(item)}
                    checked={item.isChecked} 
@@ -70,6 +71,8 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
               )
             })}
         </div>
+      </div>
+        
     )
 }
 

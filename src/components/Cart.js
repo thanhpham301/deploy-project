@@ -32,7 +32,6 @@ function Cart ({cart, deleteCart}) {
     },[selectedValues, deleteCart])
 console.log("cart")
 
-    
 
     const handleSelect = (event, idx) => {
         const newSelectedValues = [...selectedValues]
