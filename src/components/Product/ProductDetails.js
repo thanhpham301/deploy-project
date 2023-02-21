@@ -73,7 +73,7 @@ function ProductDetails({detailItem, cart}) {
                   type='radio' 
                   value={item} 
                   onChange={handleSizeChange} 
-                  checked={productSize == item} 
+                  checked={productSize === item} 
                   name="size" className='size-input hidden' />
                   <label htmlFor={`${idx} size`} 
                   className='size-label flex inline-block border rounded-[5px] hover:border-black w-full h-[60px] justify-center items-center'>

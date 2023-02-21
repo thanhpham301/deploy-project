@@ -1,0 +1,60 @@
+/* .text-background {
+  height: 25px;
+  background-color: black;
+  overflow: hidden;
+}
+
+.running-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: running-text 10s linear infinite;
+  color: white;
+}
+
+@keyframes running-text {
+  from {
+    transform: translateX(300%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+} */
+
+/* body { margin: 20px; } */
+
+.marquee {
+  margin-top: 50px;
+  
+  height: 25px;
+  width: 1500px;
+
+  overflow: hidden;
+  position: relative;
+
+  background-color: black;
+}
+
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+
+  position: absolute;
+  overflow: hidden;
+
+  animation: marquee 10s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+
+  color: white;
+
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
+}
