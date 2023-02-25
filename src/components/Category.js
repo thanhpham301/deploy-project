@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { category } from '../data/Cat-Gen-Size';
+import { useContext, useState } from 'react';
+import { ProductContext } from '../data/ProductContext';
 function Category({updateCat}) {
+    const {category} = useContext(ProductContext)
     const [activeItem, setActiveItem] = useState('all');
     function handleItemClick(item) {
         setActiveItem(item);

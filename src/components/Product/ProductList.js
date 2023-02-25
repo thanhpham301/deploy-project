@@ -1,31 +1,10 @@
-import { product } from "../../data/Shoes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
-
-function Product(props) {
-  
-  return (
-    <div className="product ml-[50px]">
-      <img src={props.img} alt="" className="w-[375px] h-[375px]"/>
-      <div className='description'>
-        <h1 className='font-medium'>{props.name}</h1>
-        <p className='text-teal-500'>{props.distribute}</p>
-        {/* toán tử ba ngôi if else */}
-        <p className='text-teal-500'>{props.colors > 1 ? props.colors + " Colours" : props.colors + " Colour"}</p>
-        <p>{props.price}</p>
-      </div>
-      <div className='children hidden'>
-        {props.children.map((e) => {
-          return <img key={uuidv4()} className='w-[70px] h-[70px] mr-[10px] mt-[10px]' src={e} alt="" />
-        })}
-      </div>
-    </div>
-  )
-};
+import { ProductContext } from "../../data/ProductContext";
 
 function Products (props) {
-  
+  const {product, searchProduct} = useContext(ProductContext)
   // Tạo 1 mảng để chứa đựng các giá trị được filter, ví dụ khi click vào LifeStyle thì mảng những sản phẩm LifeStyle sẽ được lưu vào
   // Lý do dùng useRef thì lên GPT hỏi nó useRef là gì nó nói cho rõ
   // Nếu ở đây mà đặt cái biến arrGenderProducts = [], thì chọn LifeStyle lúc click vào checkbox Gender "Nam" thì component Products này sẽ render lại từ đầu
@@ -50,7 +29,7 @@ function Products (props) {
     // từ biến đó mình sẽ filter để lọc ra những sản phẩm chứa Gender khi click chọn
     arrGenderProducts.current = category;
     
-  },[props.catToShow, props.sizeToShow])
+  },[props.catToShow, props.sizeToShow, product])
 
   // useEffect này đảm nhiệm phần gender, mỗi click vào gender nào thì setDatatoShow sẽ render theo category đó
   // useEffect này thực thi khi props.genderToShow có sự thay đổi
@@ -81,7 +60,11 @@ function Products (props) {
     }
     
   },[props.sizeToShow])
-  
+  useEffect(() => {
+    const resultSearch = product.filter(item => searchProduct.every(element => item.name.toLowerCase().includes(element.toLowerCase())))
+    setDatatoShow(resultSearch)
+  },[searchProduct])
+
   function handleOnClick(item) {
     props.detailProduct(item)
   }
@@ -91,16 +74,21 @@ function Products (props) {
           {dataToShow.map((item, index) => {
           return (
             <Link to={`/products/${index}`} onClick={() => handleOnClick(item)} key={index}>
-              <Product 
-                id={item.id} 
-                img={item.img} 
-                name={item.name} 
-                distribute={item.distribute} 
-                colors={item.colors.length}  
-                price={item.price} 
-                gender={item.gender}> 
-                {item.colors}
-              </Product>
+              <div className="product">
+                <img src={item.img} alt="" className="w-[375px] h-[375px]"/>
+                <div className='description'>
+                  <h1 className='font-medium'>{item.name}</h1>
+                  <p className='text-teal-500'>{item.distribute}</p>
+                  {/* toán tử ba ngôi if else */}
+                  <p className='text-teal-500'>{item.colors.length > 1 ? item.colors.length + " Colours" : item.colors.length + " Colour"}</p>
+                  <p>{item.price}</p>
+                </div>
+                <div className='children hidden'>
+                  {item.colors.map((e) => {
+                    return <img key={uuidv4()} className='w-[70px] h-[70px] mr-[10px] mt-[10px]' src={e} alt="" />
+                  })}
+                </div>
+              </div>
             </Link>)
           })}
         </div>

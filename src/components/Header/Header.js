@@ -1,8 +1,10 @@
 import '../../App.css';
 import SigninBox from './SigninBox';
 import { Link } from 'react-router-dom';
+import Search from './Search';
 
-function Header({cart}){
+function Header(props){
+  const {cart} = props;
   
     return (
       <div className='mt-[20px]'>
@@ -19,10 +21,7 @@ function Header({cart}){
           </Link>
           <div className="flex absolute right-[70px] items-center">
               <div className="m-[10px]">
-                  <label htmlFor="search" className="absolute flex cursor-pointer w-[40px] h-[40px] rounded-[20px] hover:bg-neutral-300">
-                      <i className="far fa-search w-full h-[32px] text-center text-[20px] pt-[10px]"></i></label>
-                  <input type="text" placeholder="Search" id="search" 
-                  className="rounded-[20px] bg-[#f5f5f5] text-[15px] h-[40px] hover:bg-neutral-300 pl-[40px] w-[160px]"/>
+                <Search />
               </div>
               <Link to="/cart">
                 <span className="relative block m-[10px] "><i className="fas fa-bags-shopping text-[20px]"></i>

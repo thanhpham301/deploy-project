@@ -6,8 +6,10 @@ function ProductDetails({detailItem, cart}) {
   useParams();
   const [productImg, setProductImg] = useState("")
   const [productSize, setProductSize] = useState("")
+  const [changeImg, setChangeImg] = useState("")
   const handleImgChange = (event) => {
     setProductImg(event.target.value)
+    setChangeImg(event.target.value)
   } 
 
   const handleSizeChange = (event) => {
@@ -36,15 +38,15 @@ function ProductDetails({detailItem, cart}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex">
-        <div className=" grid grid-cols-2 gap-[20px] w-[65%] ml-[70px] pr-[50px]">
+        <div className=" grid grid-cols-2 gap-[20px] w-[65%] ml-[70px] pr-[50px]" style={{display: changeImg !== "" ? "block" : "grid"}}>
           {detailItem.colors.map((item, idx) => {
-            return <img key={idx} src={item} alt=""/>
+            return <img key={idx} src={item} style={{display: changeImg === "" ? "block" : (item === changeImg ? "block" : "none")}} alt=""/>
           })}
         </div>
         <div className='w-[35%] pr-[100px] pl-[20px]'>
           <h1 className='text-[30px] font-medium'>{detailItem.name}</h1>
           <p>{detailItem.gender}'s Shoes</p>
-          <h2 className='mt-[20px] text-[30px] font-medium'>{detailItem.price}</h2>
+          <h2 className='mt-[20px] text-[30px] font-medium'>{`${detailItem.price} $`}</h2>
           <div className='flex'>
             {detailItem.colors.map((item, idx) => {
               return (
@@ -73,7 +75,7 @@ function ProductDetails({detailItem, cart}) {
                   type='radio' 
                   value={item} 
                   onChange={handleSizeChange} 
-                  checked={productSize == item} 
+                  checked={Number(productSize) === item} 
                   name="size" className='size-input hidden' />
                   <label htmlFor={`${idx} size`} 
                   className='size-label flex inline-block border rounded-[5px] hover:border-black w-full h-[60px] justify-center items-center'>

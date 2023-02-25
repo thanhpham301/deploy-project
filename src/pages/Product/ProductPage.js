@@ -7,7 +7,7 @@ import Size from '../../components/Size';
 import ScrollUp from '../../components/Scrollup';
 
 
-function Body ({onProductClick}) {
+function Body ({onProductClick, product}) {
     
     // Set default value as "all"
     const [filterKeyword, setFilterKeyword] = useState('all')
@@ -39,13 +39,13 @@ function Body ({onProductClick}) {
             <Nav />
             <div className='flex'>
                 {/* Description */}
-                <div className='flex-initial w-[200px] ml-[70px]'>
+                <div className='flex-initial w-[200px] ml-[70px] mr-[20px]'>
                     {/**/}
                     <Category updateCat={updateCat}/>
                     <Gender data={filterKeyword} updateGender={updateGender}/>
                     <Size cateKeyword={filterKeyword} genderKeyword={genderKeyword} updateSize={updateSize} />
                 </div >
-                <Products catToShow={filterKeyword} genderToShow={genderKeyword} sizeToShow={sizeKeyword} detailProduct={handleProductClick}/>
+                <Products  catToShow={filterKeyword} genderToShow={genderKeyword} sizeToShow={sizeKeyword} detailProduct={handleProductClick}/>
             </div>
             <ScrollUp />
         </div>

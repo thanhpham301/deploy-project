@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { size } from "../data/Cat-Gen-Size";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ProductContext } from "../data/ProductContext";
 
 function Size ({cateKeyword, genderKeyword, updateSize}) {
-  
+  const {size} = useContext(ProductContext)
   const [listSize, setListSize] = useState(size.map((item) => ({
     label: item,
     isChecked: false
@@ -11,6 +11,7 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
   // Tạo mảng chứa những giá trị được stick khi click ô checkbox size để đưa qua Products component
   const [arrCheckedSize, setArrCheckedSize] = useState('all')
 
+  
   useEffect(() => {
     setListSize(size.map(item => ({
       label: item,
@@ -18,7 +19,7 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
     })))
     setArrCheckedSize('all')
     sizeClicked.current = []
-  },[cateKeyword, genderKeyword])
+  },[cateKeyword, genderKeyword, size])
 
   // Tạo sự kiện khi click vào ô size sẽ hiện dấu stick ở ô được click vì ban đầu ô checkbox đang set là False, khi click sẽ set về True để hiện dáu stick
   function onChangeSize(item) {
@@ -57,8 +58,9 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
           <div className='pb-[50px] border-b border-solid grid grid-cols-2'>
             {listSize.map((item, idx) => {
               return (
-                <div key={idx} className="grid grid-cols-2">
+                <div key={idx} className="grid grid-cols-2" style={{fontWeight: item.isChecked ? "bold" : "normal"}}>
                   <input id={idx} type="checkbox" className="hidden"
+                  
                   onChange={() => onChangeSize(item)}
                   onClick={() => onClickSize(item)}
                    checked={item.isChecked} 

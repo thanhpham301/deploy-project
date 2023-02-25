@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { gender } from "../data/Cat-Gen-Size";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ProductContext } from "../data/ProductContext";
 
 function Gender ({data, updateGender}) {
+  const {gender} = useContext(ProductContext)
   // Tạo mảng chỉ chứa phần tử là gender
   let genderArr = useRef([])
   // Tạo mảng chứa những giá trị được stick khi click ô checkbox gender để đưa qua Products component
@@ -23,7 +24,7 @@ function Gender ({data, updateGender}) {
     })))
     setArrCheckedGender('all')
     genderArr.current = []
-  },[data])
+  },[data, gender])
 
   // Tạo sự kiện khi click vào ô gender sẽ hiện dấu stick ở ô được click vì ban đầu ô checkbox đang set là False, khi click sẽ set về True để hiện dáu stick
   function onChangeGender(item) {
@@ -67,14 +68,14 @@ function Gender ({data, updateGender}) {
             <h1>Gender</h1>
             {listGender.map((item, idx) => {
               return (
-                <div key={idx}>
-                  <input id={`${idx}`+"gender"} type="checkbox" className="hidden"
+                <div key={idx} style={{fontWeight: item.isChecked ? "bold" : "normal"}}>
+                  <input id={`${idx} gender`} type="checkbox" className="hidden"
                   onChange={() => onChangeGender(item)}
                   onClick={() => onClickGender(item)}
                    checked={item.isChecked} 
                    value={item.label} 
                    />
-                  <label htmlFor={`${idx}`+"gender"}>
+                  <label htmlFor={`${idx} gender`}>
                     {item.label}
                     </label><br/>
                 </div>

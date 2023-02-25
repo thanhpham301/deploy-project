@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const product = [
+export const data = [
     {
       id: uuidv4(),
       img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/bee0364a-908b-479c-a3de-0966148faa45/air-max-terrascape-97-shoes-3cGxRv.png",
