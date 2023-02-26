@@ -1,5 +1,6 @@
 import RunText from './Runtext'
 import Slideshow from './Slideshow'
+import Footer from './Footer';
 
 function Home () {
     return (
@@ -15,7 +16,9 @@ function Home () {
             </div>
             <br/>
             <hr/>
-            <div id="bot"></div>
+            <div id="bot">
+                <Footer />
+            </div>
         </div>
     )
 }
