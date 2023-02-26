@@ -1,26 +1,21 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 
-function Cart ({cart, deleteCart}) {
+
+function Cart ({cart, deleteCart, newCart}) {
+
     const [cartToShow, setCartToShow] = useState([])
-    
-    const [sumToShow, setSumToShow] = useState((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
+    const [sumToShow, setSumToShow] = useState()
     const [total, setTotal] = useState("")
+    const [fee, setFee] = useState("")
+    const [selectedValues, setSelectedValues] = useState(
+        new Array(cart.length).fill(1)
+    );
     useEffect(()=> {
         setCartToShow(cart)
-        
+        setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
+
     },[cart])
-    
-    
-    const [selectedValues, setSelectedValues] = useState(
-      new Array(cartToShow.length).fill("")
-      );
-    
-    const [priceProduct, setPriceProduct] = useState(cart.map(item => item.price))
-    const [fee, setFee] = useState("")
-    
-    useEffect(() => {
-        setSumToShow(priceProduct.reduce((total, num) => total + num, 0))
-    },[priceProduct])
+
 
     useEffect(() => {
         if(cart.length > 1 || cartToShow.length > 1 || selectedValues[0] > 1){
@@ -42,32 +37,26 @@ function Cart ({cart, deleteCart}) {
     useEffect(() => {
         const storedSelected = JSON.parse(localStorage.getItem('selectedStorage'))
         if (storedSelected) {
+            console.log(storedSelected)
             setSelectedValues(storedSelected)
         }
     }, [])
-
-    useEffect(() => {
-        const storedPrice = JSON.parse(localStorage.getItem('priceStorage'))
-        if (storedPrice) {
-            setPriceProduct(storedPrice)
-        }
-    }, [])
+    
     const handleSelect = (event, idx) => {
         const newSelectedValues = [...selectedValues]
         newSelectedValues[idx] = Number(event.target.value) 
         setSelectedValues(newSelectedValues)
         localStorage.setItem('selectedStorage', JSON.stringify(newSelectedValues))
 
-        const newPriceProduct = [...priceProduct]
-        newPriceProduct[idx] = cartToShow[idx].price * Number(event.target.value) 
-        setPriceProduct(newPriceProduct)
-        localStorage.setItem('priceStorage', JSON.stringify(newPriceProduct))
+        const newTest = [...cartToShow]
+        newTest[idx].price = cartToShow[idx].price * Number(event.target.value)
+        console.log(newTest)
+        newCart(newTest)
+        
     }
     
 
     const changedDelete = (idx) => {
-        setPriceProduct(prev => prev.filter((item, id) => id !== idx))
-        localStorage.setItem('priceStorage', JSON.stringify(priceProduct.filter((element, index) => index !== idx)))
         setSelectedValues(prev => prev.filter((item, id) => id !== idx))
         localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
     }
@@ -100,7 +89,7 @@ function Cart ({cart, deleteCart}) {
                                     </button>
                                 </div>
                             </div>
-                            <p>{`${priceProduct[idx]} $`}</p>
+                            <p>{`${cartToShow[idx].price} $`}</p>
                         </div>
                     )
                 })

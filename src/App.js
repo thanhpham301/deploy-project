@@ -19,7 +19,6 @@ function App() {
   const [productItem , setProductItem] = useState(null)
   const [cart, setCart] = useState([])
   const [searchProduct, setSearchProduct] = useState([])
-
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('dataStorage'))
     if (storedData) {
@@ -45,10 +44,9 @@ function App() {
       debug.current = storedCart
     }
   }, [])
-  console.log(product)
+  
   
   let debug = useRef([])
-  
   function addProduct(item) {
     setProduct([...product, item])
     localStorage.setItem('dataStorage', JSON.stringify([...product, item]))
@@ -58,15 +56,21 @@ function App() {
     localStorage.setItem('sizeStorage', JSON.stringify([...new Set([...size, ...item.size])]))
     setGender(dataGender)
   }
+
   function detailProduct(detail) {
     setProductItem(detail)
   }
+
   function cartProduct(product) {
-    
     debug.current.push(product)
     setCart([...debug.current])
     localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
-    
+
+  }
+  function newCart(cart) {
+    debug.current = cart
+    setCart([...debug.current])
+    localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
   }
   
   function delProduct(itemDeleted){
@@ -86,7 +90,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage onProductClick={detailProduct} />} />
           <Route path="/products/:id" element={<ProductDetails detailItem={productItem}  cart={cartProduct}/>} />
-          <Route path="/cart" element={<Cart cart={cart} deleteCart={delProduct}/>} />
+          <Route path="/cart" element={<Cart cart={cart} newCart={newCart} deleteCart={delProduct}/>} />
           <Route path="/admin" element={<Adminpage addProduct={addProduct} deletedData={deletedData}/>} />
           <Route path="*" element={<h1>Page not found</h1>}/>
         </Routes>
