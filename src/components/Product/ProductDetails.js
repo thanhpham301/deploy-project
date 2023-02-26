@@ -34,7 +34,7 @@ function ProductDetails({detailItem, cart}) {
     setProductSize("")
     
   }
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex">

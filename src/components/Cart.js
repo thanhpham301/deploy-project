@@ -2,7 +2,6 @@ import {useEffect, useState } from "react";
 
 
 function Cart ({cart, deleteCart, newCart}) {
-
     const [cartToShow, setCartToShow] = useState([])
     const [sumToShow, setSumToShow] = useState()
     const [total, setTotal] = useState("")

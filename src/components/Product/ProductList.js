@@ -52,7 +52,7 @@ function Products (props) {
 
   useEffect(() => {
     if (props.sizeToShow === 'all') {
-      setDatatoShow(arrGenderProducts.current)
+      setDatatoShow(arrSizeProducts.current)
     }
     else {
       const filteredSize = arrSizeProducts.current.filter(i => props.sizeToShow.every(element => i.size.includes(element)))
@@ -63,12 +63,12 @@ function Products (props) {
   useEffect(() => {
     const resultSearch = product.filter(item => searchProduct.every(element => item.name.toLowerCase().includes(element.toLowerCase())))
     setDatatoShow(resultSearch)
-  },[searchProduct])
+  },[searchProduct, product])
 
   function handleOnClick(item) {
     props.detailProduct(item)
   }
-
+  console.log(dataToShow.length)
     return (
         <div className="info grid grid-cols-3 gap-[50px]">
           {dataToShow.map((item, index) => {

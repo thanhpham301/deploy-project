@@ -19,6 +19,7 @@ function App() {
   const [productItem , setProductItem] = useState(null)
   const [cart, setCart] = useState([])
   const [searchProduct, setSearchProduct] = useState([])
+
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('dataStorage'))
     if (storedData) {
@@ -67,6 +68,7 @@ function App() {
     localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
 
   }
+  
   function newCart(cart) {
     debug.current = cart
     setCart([...debug.current])

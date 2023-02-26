@@ -54,22 +54,22 @@ function Size ({cateKeyword, genderKeyword, updateSize}) {
   updateSize(arrCheckedSize)
     return (
       <div>
-          <h1>Size</h1>
+          <h1 className="mb-[20px] text-[20px] font-medium">Size</h1>
           <div className='pb-[50px] border-b border-solid grid grid-cols-2'>
             {listSize.map((item, idx) => {
               return (
-                <div key={idx} className="grid grid-cols-2" style={{fontWeight: item.isChecked ? "bold" : "normal"}}>
-                  <input id={idx} type="checkbox" className="hidden"
-                  
-                  onChange={() => onChangeSize(item)}
-                  onClick={() => onClickSize(item)}
-                   checked={item.isChecked} 
-                   value={item.label} 
-                   />
-                  <label htmlFor={idx}>
-                    {item.label}
-                    </label><br/>
-                </div>
+                <label key={idx} style={{fontWeight: item.isChecked ? "bold" : "normal", backgroundColor: item.isChecked ? "silver" : "white"}} 
+                className='inline-block cursor-pointer mb-[10px] w-[90px]
+                hover:shadow-md hover:shadow-amber-300
+                text-center py-[10px] rounded-[5px] border'>
+                  {item.label}
+                  <input  type="checkbox" className="hidden"
+                    onChange={() => onChangeSize(item)}
+                    onClick={() => onClickSize(item)}
+                    checked={item.isChecked} 
+                    value={item.label} 
+                  />
+                </label>
               )
             })}
         </div>

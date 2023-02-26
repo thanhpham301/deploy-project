@@ -64,21 +64,22 @@ function Gender ({data, updateGender}) {
   updateGender(arrCheckedGender)
   
     return (
-        <div className='pb-[50px] border-b border-solid'>
-            <h1>Gender</h1>
+        <div className='pb-[30px] border-b border-solid'>
+            <h1 className="mb-[20px] text-[20px] font-medium">Gender</h1>
             {listGender.map((item, idx) => {
               return (
-                <div key={idx} style={{fontWeight: item.isChecked ? "bold" : "normal"}}>
-                  <input id={`${idx} gender`} type="checkbox" className="hidden"
-                  onChange={() => onChangeGender(item)}
-                  onClick={() => onClickGender(item)}
-                   checked={item.isChecked} 
-                   value={item.label} 
-                   />
-                  <label htmlFor={`${idx} gender`}>
+                  <label key={idx} style={{fontWeight: item.isChecked ? "bold" : "normal", backgroundColor: item.isChecked ? "silver" : "white"}} 
+                    className='inline-block mr-[10px] cursor-pointer mb-[10px] w-[90px] 
+                    hover:shadow-md hover:shadow-amber-300
+                    text-center py-[10px] rounded-[5px] border'>
                     {item.label}
-                    </label><br/>
-                </div>
+                    <input type="checkbox" className="hidden"
+                      onChange={() => onChangeGender(item)}
+                      onClick={() => onClickGender(item)}
+                      checked={item.isChecked} 
+                      value={item.label} 
+                    />
+                    </label>
               )
             })}
         </div>

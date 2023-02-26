@@ -9,7 +9,6 @@ function SigninBox () {
     const [account, setAccount] = useState("")
     const [showButtonLogOut, setShowButtonLogOut] = useState(true)
     const [showButtonAdmin, setShowButtonAdmin] = useState(false)
-
     useEffect(() => {
         const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
         if (storedAccount) {
@@ -52,7 +51,7 @@ function SigninBox () {
         setEmail("")
         setPassword("")
     }
-    function Logout() {
+    function logout() {
         setShowButtonLogOut(true)
         setAccount("")
         localStorage.removeItem('accountStorage')
@@ -67,7 +66,7 @@ function SigninBox () {
                  className="label-signin text-[20px] cursor-pointer">
                     Sign In
                 </label>
-                <form onSubmit={handleSubmitSignin} className="header-sub-signin hidden flex flex-col absolute 
+                <form onSubmit={handleSubmitSignin} className="header-sub-signin hidden flex flex-col absolute z-50
                         text-center right-[-55px] top-[40px] bg-slate-50 p-[10px] rounded-[20px]">
                     <input type="email" value={emailUser} onChange={handleChangedEmail} placeholder="Email" 
                         className="border-solid rounded-[20px] bg-[#f5f5f5] text-[15px] h-[30px] 
@@ -88,7 +87,9 @@ function SigninBox () {
             </div> :
             <div>
                 <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span>
-                <button type='button' onClick={Logout}>Log out</button>
+                <Link to="/">
+                    <button type='button' onClick={logout}>Log out</button>
+                </Link>
                 {showButtonAdmin &&
                     <Link to="/Admin">
                         <button>Admin</button>

@@ -1,4 +1,3 @@
-import Nav from '../../components/Nav';
 import Category from '../../components/Category';
 import Gender from '../../components/Gender';
 import Products from '../../components/Product/ProductList';
@@ -36,8 +35,7 @@ function Body ({onProductClick, product}) {
     
     return (
         <div>
-            <Nav />
-            <div className='flex'>
+            <div className='flex mt-[60px]'>
                 {/* Description */}
                 <div className='flex-initial w-[200px] ml-[70px] mr-[20px]'>
                     {/**/}
