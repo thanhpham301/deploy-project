@@ -87,7 +87,7 @@ function SigninBox () {
                 </form>
             </div> :
             <div>
-                <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span>
+                {/* <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span> */}
                 <button type='button' onClick={Logout}>Log out</button>
                 {showButtonAdmin &&
                     <Link to="/Admin">
