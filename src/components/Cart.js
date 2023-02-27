@@ -1,7 +1,9 @@
-import {useEffect, useState } from "react";
+import { useRef } from "react";
+import {useContext, useEffect, useState } from "react";
+import { ProductContext } from "../data/ProductContext";
 
-
-function Cart ({cart, deleteCart, newCart}) {
+function Cart ({deleteCart}) {
+    const {cart} = useContext(ProductContext)
     const [cartToShow, setCartToShow] = useState([])
     const [sumToShow, setSumToShow] = useState()
     const [total, setTotal] = useState("")
@@ -12,9 +14,7 @@ function Cart ({cart, deleteCart, newCart}) {
     useEffect(()=> {
         setCartToShow(cart)
         setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
-
     },[cart])
-
 
     useEffect(() => {
         if(cart.length > 1 || cartToShow.length > 1 || selectedValues[0] > 1){
@@ -48,19 +48,17 @@ function Cart ({cart, deleteCart, newCart}) {
         localStorage.setItem('selectedStorage', JSON.stringify(newSelectedValues))
 
         const newTest = [...cartToShow]
-        newTest[idx].price = cartToShow[idx].price * Number(event.target.value)
+        newTest[idx].price = cart[idx].price * Number(event.target.value)
         console.log(newTest)
-        newCart(newTest)
+        
+        setCartToShow(newTest)
         
     }
-    
 
     const changedDelete = (idx) => {
         setSelectedValues(prev => prev.filter((item, id) => id !== idx))
         localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
     }
-
-    console.log(selectedValues)
     
     return (
         <div className="flex justify-center flex-wrap">

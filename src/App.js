@@ -10,6 +10,7 @@ import Adminpage from './pages/Admin/Adminpage';
 import { data } from './data/Shoes';
 import { ProductContext } from './data/ProductContext';
 import { dataCategory, dataGender, dataSize } from './data/Cat-Gen-Size';
+import RegisterPage from './pages/Register/Register';
 
 function App() {
   const [product, setProduct] = useState(data)
@@ -19,6 +20,7 @@ function App() {
   const [productItem , setProductItem] = useState(null)
   const [cart, setCart] = useState([])
   const [searchProduct, setSearchProduct] = useState([])
+  const [registered, setRegistered] = useState([])
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('dataStorage'))
@@ -68,12 +70,12 @@ function App() {
     localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
 
   }
-  
-  function newCart(cart) {
-    debug.current = cart
-    setCart([...debug.current])
-    localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
-  }
+  console.log(cart)
+  // function newCart(cart) {
+  //   debug.current = cart
+  //   setCart([...debug.current])
+  //   localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
+  // }
   
   function delProduct(itemDeleted){
     debug.current = debug.current.filter((item, idx) => idx !== itemDeleted)
@@ -86,13 +88,14 @@ function App() {
   }
   return (
     <div>
-      <ProductContext.Provider value={{product, category, gender, size, searchProduct, setSearchProduct}}>
+      <ProductContext.Provider value={{product, category, cart, gender, size, searchProduct, setSearchProduct,registered, setRegistered}}>
         <Header cart={cart}/>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/products" element={<ProductPage onProductClick={detailProduct} />} />
           <Route path="/products/:id" element={<ProductDetails detailItem={productItem}  cart={cartProduct}/>} />
-          <Route path="/cart" element={<Cart cart={cart} newCart={newCart} deleteCart={delProduct}/>} />
+          <Route path="/cart" element={<Cart  deleteCart={delProduct}/>} />
           <Route path="/admin" element={<Adminpage addProduct={addProduct} deletedData={deletedData}/>} />
           <Route path="*" element={<h1>Page not found</h1>}/>
         </Routes>

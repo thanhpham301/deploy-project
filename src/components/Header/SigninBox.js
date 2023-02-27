@@ -1,14 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../../App.css';
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../../data/ProductContext';
 
 function SigninBox () {
-
+    const {registered} = useContext(ProductContext)
     const [emailUser, setEmail] = useState("")
     const [passwordUser, setPassword] = useState("")
     const [account, setAccount] = useState("")
     const [showButtonLogOut, setShowButtonLogOut] = useState(true)
     const [showButtonAdmin, setShowButtonAdmin] = useState(false)
+    const [accRegistered, setAccRegistered] = useState([])
+    
+    useEffect(() => {
+        setAccRegistered(registered)
+    }, [registered])
+    useEffect(() => {
+        const registeredAccount = JSON.parse(localStorage.getItem('account'))
+        if (registeredAccount){
+            setAccRegistered(registeredAccount)
+        }
+    },[])
     useEffect(() => {
         const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
         if (storedAccount) {
@@ -20,7 +32,7 @@ function SigninBox () {
         setShowButtonLogOut(isAuthenticated)
     },[])
     useEffect(() => {
-        if(account.email === "thanhphamcpt1@gmail.com" && account.password === "s886486821"){
+        if(account.email === "t@gmail.com" && account.password === "886486821"){
             setShowButtonAdmin(true)
         }
         else {
@@ -36,20 +48,30 @@ function SigninBox () {
     }
     function handleSubmitSignin(event) {
         event.preventDefault();
+        const foundUser = accRegistered.find(user => user.email === emailUser && user.password === passwordUser)
         if (!emailUser || !passwordUser) {
             alert("Không được bỏ trống email hoặc password");
             return
         }
-        const userInfor = {
-            email: emailUser,
-            password: passwordUser
+        else if (foundUser){
+            const userInfor = {
+                email: emailUser,
+                password: passwordUser
+            }
+            setAccount(userInfor)
+            localStorage.setItem('accountStorage', JSON.stringify(userInfor))
+            setShowButtonLogOut(false)
+            localStorage.setItem('showButtonStorage', false)
+            setEmail("")
+            setPassword("")
         }
-        setAccount(userInfor)
-        localStorage.setItem('accountStorage', JSON.stringify(userInfor))
-        setShowButtonLogOut(false)
-        localStorage.setItem('showButtonStorage', false)
-        setEmail("")
-        setPassword("")
+        else {
+            alert("Email hoặc password không đúng")
+            setEmail("")
+            setPassword("")
+            return;
+        }
+        
     }
     function logout() {
         setShowButtonLogOut(true)
@@ -82,7 +104,9 @@ function SigninBox () {
                                 Forgotten ?
                         </span>
                     </div>
-                    <span className="p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">SIGN UP</span>
+                    <Link to='/register'>
+                        <span className="p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">SIGN UP</span>
+                    </Link>
                 </form>
             </div> :
             <div>
