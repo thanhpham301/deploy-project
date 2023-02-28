@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import {useContext, useEffect, useState } from "react";
+import * as _ from "lodash"
 import { ProductContext } from "../data/ProductContext";
 
 function Cart ({deleteCart}) {
@@ -11,11 +11,18 @@ function Cart ({deleteCart}) {
     const [selectedValues, setSelectedValues] = useState(
         new Array(cart.length).fill(1)
     );
+    
     useEffect(()=> {
-        setCartToShow(cart)
-        setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
+        const getCart = JSON.parse(localStorage.getItem('cartStorage'))
+        setCartToShow(getCart)
+        // setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
     },[cart])
-
+    // useEffect(() => {
+    //     const productCartSaved = JSON.parse(localStorage.getItem('productCart'))
+    //     if (productCartSaved) {
+    //         setCartToShow(productCartSaved)
+    //     }
+    // }, [])
     useEffect(() => {
         if(cart.length > 1 || cartToShow.length > 1 || selectedValues[0] > 1){
             setFee("Free")
@@ -32,11 +39,10 @@ function Cart ({deleteCart}) {
          
         }
     },[selectedValues, cart, cartToShow, sumToShow])
-
+    
     useEffect(() => {
         const storedSelected = JSON.parse(localStorage.getItem('selectedStorage'))
         if (storedSelected) {
-            console.log(storedSelected)
             setSelectedValues(storedSelected)
         }
     }, [])
@@ -47,17 +53,18 @@ function Cart ({deleteCart}) {
         setSelectedValues(newSelectedValues)
         localStorage.setItem('selectedStorage', JSON.stringify(newSelectedValues))
 
-        const newTest = [...cartToShow]
+        const newTest = [..._.cloneDeep(cartToShow)]
         newTest[idx].price = cart[idx].price * Number(event.target.value)
-        console.log(newTest)
-        
         setCartToShow(newTest)
+        localStorage.setItem('cartStorage', JSON.stringify(newTest))
         
     }
 
     const changedDelete = (idx) => {
         setSelectedValues(prev => prev.filter((item, id) => id !== idx))
         localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
+        setCartToShow(prev => prev.filter((item, id) => id !== idx))
+        localStorage.setItem('cartStorage', JSON.stringify(cartToShow.filter((i, id) => id !== idx)))
     }
     
     return (

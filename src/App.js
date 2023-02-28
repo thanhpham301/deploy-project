@@ -65,12 +65,20 @@ function App() {
   }
 
   function cartProduct(product) {
-    debug.current.push(product)
-    setCart([...debug.current])
+    const productDataCart = JSON.parse(localStorage.getItem('cartStorage'))
+    console.log(productDataCart)
+    if(productDataCart) {
+      setCart([...productDataCart, product])
+      localStorage.setItem('cartStorage', JSON.stringify([...productDataCart, product]))
+    }
+    // debug.current.push(product)
+    setCart([...product])
+    // setCart([...debug.current])
     localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
-
+    
   }
   console.log(cart)
+
   // function newCart(cart) {
   //   debug.current = cart
   //   setCart([...debug.current])
