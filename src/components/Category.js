@@ -18,7 +18,7 @@ function Category({updateCat}) {
                     All
                 </li>
                 {category.map((cat, idx) => 
-                    <li className="cursor-pointer mb-[10px] w-[90px] text-center py-[10px] border 
+                    <li className=" cursor-pointer mb-[10px] w-[90px] text-center py-[10px] border 
                     rounded-[5px] bg-gray-100 hover:shadow-md hover:shadow-amber-300" 
                     key={idx} 
                     onClick={() => [updateCat(`${cat}`), handleItemClick(`${cat}`)]}

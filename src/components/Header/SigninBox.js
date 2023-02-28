@@ -97,20 +97,21 @@ function SigninBox () {
                         className="border-solid rounded-[20px] bg-[#f5f5f5] text-[15px] h-[30px] 
                         hover:bg-neutral-300 w-[160px] mt-[5px] pl-[10px] truncate w-[230px]"/>
                     <div className="flex justify-between">
-                        <button type='submit' className="text-[15px] p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">
+                        <button type='submit' className="text-[12px] p-[10px] mt-[5px] font-semibold hover:bg-gray-400 hover:text-white rounded-[20px]">
                                 SIGN IN
                         </button>
-                        <span className="text-[15px] p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">
+                        {/* <span className="text-[15px] p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">
                                 Forgotten ?
-                        </span>
+                        </span> */}
+                        <Link to='/register' className='text-[15px] p-[10px] mt-[5px]'>
+                        <span className=" text-[12px] p-[10px] mt-[5px] font-semibold hover:bg-gray-400 hover:text-white rounded-[20px]">CREATE NEW ?</span>
+                        </Link>
                     </div>
-                    <Link to='/register'>
-                        <span className="p-[10px] mt-[5px] hover:bg-gray-300 hover:text-white rounded-[20px]">SIGN UP</span>
-                    </Link>
+                    
                 </form>
             </div> :
             <div>
-                <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span>
+                {/* <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span> */}
                 <Link to="/">
                     <button type='button' onClick={logout}>Log out</button>
                 </Link>
