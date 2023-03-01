@@ -37,7 +37,7 @@ function Body ({onProductClick, product}) {
         <div>
             <div className='flex mt-[50px]'>
                 {/* Description */}
-                <div className='flex-initial w-[200px] ml-[70px] mr-[20px] text-center'>
+                <div className='flex-initial w-[200px] ml-[40px] mr-[20px] text-center'>
                     <h1 >({numberLengthProduct})</h1>
                     {/**/}
                     <Category updateCat={updateCat}/>

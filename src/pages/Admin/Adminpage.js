@@ -120,7 +120,9 @@ function Adminpage ({addProduct, deletedData}) {
                     <select value={productCategory} onChange={(item) => handleProductCategory(item)}
                     className="w-1/8 p-2 mb-8 border rounded-md ml-[16px]">
                     {category.map((item, idx) => {
-                        return <option key={idx} value={item}>{item}</option>
+                        return <option key={idx} value={item}>
+                            {item}
+                        </option>
                     })}
                     <option value='other'>Other</option>
                     </select>
