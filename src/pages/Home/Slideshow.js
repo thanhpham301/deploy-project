@@ -6,7 +6,7 @@ function Slideshow() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSlideIndex((slideIndex) => (slideIndex + 1) % 3);
+      setSlideIndex((slideIndex) => (slideIndex + 1) % 4);
     }, 2000);
     return () => clearInterval(interval);
   }, []);
@@ -23,7 +23,7 @@ function Slideshow() {
           alt=""
           style={{ width: "100%" }}
         />
-        <div className="text">Caption Text</div>
+        <div className="text"></div>
       </div>
 
       <div
@@ -32,11 +32,11 @@ function Slideshow() {
       >
         <div className="numbertext">2 / 3</div>
         <img
-          src="https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/743/cached.offlinehbpl.hbpl.co.uk/news/OMC/204E3A37-A813-7E72-078F300B85EDE2E9.jpg"
+          src="https://ichef.bbci.co.uk/news/976/cpsprodpb/B9FF/production/_117751674_satan-shoes1.jpg"
           alt=""
           style={{ width: "100%" }}
         />
-        <div className="text">Caption Two</div>
+        <div className="text"></div>
 
       </div>
 
@@ -50,7 +50,20 @@ function Slideshow() {
           alt=""
           style={{ width: "100%" }}
         />
-        <div className="text">Caption Three</div>
+        <div className="text"></div>
+      </div>
+
+      <div
+        className="mySlides fade"
+        style={{ display: slideIndex === 3 ? "block" : "none" }}
+      >
+        <div className="numbertext">4 / 4</div>
+        <img
+          src="https://thietke6d.com/wp-content/uploads/2021/05/banner-quang-cao-giay-1.webp"
+          alt=""
+          style={{ width: "100%" }}
+        />
+        <div className="text"></div>
       </div>
 
       <br />
@@ -59,6 +72,7 @@ function Slideshow() {
         <span className={slideIndex === 0 ? "dot active" : "dot"}></span>
         <span className={slideIndex === 1 ? "dot active" : "dot"}></span>
         <span className={slideIndex === 2 ? "dot active" : "dot"}></span>
+        <span className={slideIndex === 3 ? "dot active" : "dot"}></span>
       </div>
     </div>
   );
