@@ -12,7 +12,7 @@ function RegisterPage() {
   let account = useRef([])
   const handleRegister = (e) => {
     e.preventDefault();
-    if (!password || !confirmPassword || !email || !phoneNumber){
+    if (!password || !confirmPassword || !email){
         alert('Yêu cầu nhập đầy đủ thông tin')
         return;
     }
@@ -20,21 +20,25 @@ function RegisterPage() {
         alert('Yêu cầu confirmPassword và password phải khớp nhau')
         return;
     }
-    const registerAccount = {
+    else {
+      const registerAccount = {
         id: uuidv4(),
-        email,
-        password,
-        confirmPassword,
-        phoneNumber,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        phoneNumber: phoneNumber,
       } 
     
-    account.current.push(registerAccount)
-    setRegistered([...account.current])
-    localStorage.setItem('account', JSON.stringify([...account.current]))
-    setPassword('')
-    setConfirmPassword('')
-    setEmail('')
-    setPhoneNumber('')
+      account.current.push(registerAccount)
+      console.log(registerAccount)
+      setRegistered([...account.current])
+      localStorage.setItem('account', JSON.stringify([...account.current]))
+      setPassword('')
+      setConfirmPassword('')
+      setEmail('')
+      setPhoneNumber('')
+    }
+    
   };
 
   return (
@@ -84,20 +88,20 @@ function RegisterPage() {
             <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="phoneNumber"
-            type="text"
+            type="number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             />
          </div>
         <div className="flex items-center justify-between">
-          <Link to='/'>
+          
             <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
               >
               Đăng ký
               </button>
-          </Link>
+          
             
         </div>
       </form>
