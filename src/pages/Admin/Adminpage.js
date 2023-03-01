@@ -107,42 +107,44 @@ function Adminpage ({addProduct, deletedData}) {
     }
     return (
         <div>
-            <form onSubmit={handleSubmitAddProduct} className='w-[1000px] mx-[auto]'>
+            <form onSubmit={handleSubmitAddProduct} className='w-[500px]  mx-auto mb-[50px]'>
                 <span className="inline-block mb-[20px] ">Gender</span>
-                <select value={productGender} onChange={(item) => handleProductGender(item)}>
+                <select value={productGender} onChange={(item) => handleProductGender(item)}
+                className="w-1/8 p-2 mb-8 border rounded-md ml-[30px]">
                     <option value='Men'>Men</option>
                     <option value='Women'>Women</option>
                 </select><br/>
                 
                 <span className="inline-block mb-[20px]">Category</span>
                 {showButton ? 
-                    <select value={productCategory} onChange={(item) => handleProductCategory(item)}>
+                    <select value={productCategory} onChange={(item) => handleProductCategory(item)}
+                    className="w-1/8 p-2 mb-8 border rounded-md ml-[16px]">
                     {category.map((item, idx) => {
                         return <option key={idx} value={item}>{item}</option>
                     })}
                     <option value='other'>Other</option>
                     </select>
-                    : <input type='text' placeholder="Enter Category" onChange={handleOtherCategory} className="border" />
+                    : <input type='text' placeholder="Enter Category" onChange={handleOtherCategory} className="w-1/8 p-2 mb-8 border rounded-md ml-[16px]" />
                 }
                 <br/>
 
                 <label className="inline-block mb-[20px]">
                     Name: 
-                    <input type='text' value={productName} className="border" placeholder="Enter the name" onChange={handleProductName}/>
+                    <input type='text' value={productName} className="w-1/8 p-2 mb-8 border rounded-md ml-[16px]" placeholder="Enter the name" onChange={handleProductName}/>
                 </label><br/>
 
                 <label className="inline-block mb-[20px]">
                     Price: 
-                    <input type='number' value={productPrice} className="border" placeholder="Enter the price" onChange={handleProductPrice}/>
+                    <input type='number' value={productPrice} className="w-1/8 p-2 mb-8 border rounded-md ml-[16px]" placeholder="Enter the price" onChange={handleProductPrice}/>
                 </label><br/>
 
                 <label htmlFor="imageInput" className="inline-block mb-[20px] flex">
                     {image ? (
                         image.map((item, idx) => {
-                            return <img key={idx} src={item} alt="" className="w-[100px] h-[100px] mr-[10px]" />
+                            return <img key={idx} src={item} alt="" className="w-24 h-24 mr-2" />
                         })
                     ) : (
-                        <span>Choose an image</span>
+                        <span className="text-blue-300 cursor-pointer">Choose an image</span>
                     )}
                     <input
                         type="file"
@@ -150,15 +152,16 @@ function Adminpage ({addProduct, deletedData}) {
                         accept=".jpg,.jpeg,.png"
                         onChange={handleImageChange}
                         multiple
+                        className="hidden"
                     />
                 </label><br/>
 
                 <label className="inline-block mb-[20px]">
                     Size:
-                    <textarea rows="1" value={sizes} cols="30" onChange={handleInputChange} className='border'></textarea>
+                    <textarea rows="1" value={sizes} cols="30" onChange={handleInputChange} className='p-2 border rounded-md ml-[20px]'></textarea>
                 </label><br/>
 
-                <button type="submit">Add Product</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Add Product</button>
             </form>
             <div className="grid grid-cols-3 ml-[50px] gap-x-[160px] gap-y-[20px]">
                 {productToShow.map((item, idx) => {

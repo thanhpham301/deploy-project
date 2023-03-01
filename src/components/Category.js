@@ -22,7 +22,7 @@ function Category({updateCat}) {
                     rounded-[5px] bg-gray-100 hover:shadow-md hover:shadow-amber-300" 
                     key={idx} 
                     onClick={() => [updateCat(`${cat}`), handleItemClick(`${cat}`)]}
-                    style={{fontWeight: `${cat}` === activeItem ? 'bold' : 'normal',}}
+                    style={{fontWeight:     `${cat}` === activeItem ? 'bold' : 'normal',}}
                     >
                       {cat}
                     </li>

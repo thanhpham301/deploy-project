@@ -26,7 +26,8 @@ function ProductDetails({detailItem, cart}) {
       gender: detailItem.gender,
       image: productImg,
       size: productSize,
-      price: detailItem.price
+      price: detailItem.price,
+      id: crypto.randomUUID()
     }
 
     cart(productData)

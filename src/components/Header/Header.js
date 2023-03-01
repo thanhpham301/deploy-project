@@ -2,9 +2,11 @@ import '../../App.css';
 import SigninBox from './SigninBox';
 import { Link } from 'react-router-dom';
 import Search from './Search';
+import { ProductContext } from '../../data/ProductContext';
+import { useContext } from 'react';
 
-function Header(props){
-  const {cart} = props;
+function Header(){
+  const {cart} = useContext(ProductContext);
   
     return (
       <div className='mt-[20px]'>

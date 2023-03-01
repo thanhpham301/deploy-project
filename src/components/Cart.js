@@ -8,60 +8,66 @@ function Cart ({deleteCart}) {
     const [sumToShow, setSumToShow] = useState()
     const [total, setTotal] = useState("")
     const [fee, setFee] = useState("")
-    const [selectedValues, setSelectedValues] = useState(
-        new Array(cart.length).fill(1)
-    );
-    
+    // const [selectedValues, setSelectedValues] = useState(
+    //     new Array(cart.length).fill(1)
+    // );
+    console.log(cartToShow)
     useEffect(()=> {
         const getCart = JSON.parse(localStorage.getItem('cartStorage'))
         setCartToShow(getCart)
         // setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
     },[cart])
 
-    useEffect(() => {
-        if(cart.length > 1 || cartToShow.length > 1 || selectedValues[0] > 1){
-            setFee("Free")
-            setTotal(sumToShow)
+    
+    
+    // useEffect(() => {
+    //     const storedSelected = JSON.parse(localStorage.getItem('selectedStorage'))
+    //     if (storedSelected) {
+    //         setSelectedValues(storedSelected)
+            
+    //     }
+    // }, [])
 
-        }
-        else if (cart.length === 0 || cartToShow.length === 0 ) {
+    useEffect(() => {
+        const getFromCart = JSON.parse(localStorage.getItem('cartStorage'))
+        if(getFromCart) {
+            const sumResult = (getFromCart.map(item => item.price * item.qty)).reduce((total, num) => total + num, 0)
+        setSumToShow(sumResult)
+        if (getFromCart.length === 0)  {
             setFee("")
             setTotal("")
         }
-        else{
+        else if (getFromCart.length === 1 && getFromCart[0].qty === 1) {
             setFee(10)
-            setTotal(sumToShow - 10)
-         
+            setTotal(sumResult - 10)
         }
-    },[selectedValues, cart, cartToShow, sumToShow])
-    
-    useEffect(() => {
-        const storedSelected = JSON.parse(localStorage.getItem('selectedStorage'))
-        if (storedSelected) {
-            setSelectedValues(storedSelected)
-            
+        else {
+            setFee("Free")
+            setTotal(sumResult)
         }
-    }, [])
-
-    useEffect(() => {
-        setSumToShow((cartToShow.map(item => item.price)).reduce((total, num) => total + num, 0))
+        }
+        
+        
     },[cartToShow])
-    const handleSelect = (event, idx) => {
-        const newSelectedValues = [...selectedValues]
-        newSelectedValues[idx] = Number(event.target.value) 
-        setSelectedValues(newSelectedValues)
-        localStorage.setItem('selectedStorage', JSON.stringify(newSelectedValues))
 
-        const newTest = [..._.cloneDeep(cartToShow)]
-        newTest[idx].price = cart[idx].price * Number(event.target.value)
+    const handleSelect = (event, idx) => {
+        const currentQty =  Number(event.target.value) 
+
+        const newTest = [..._.cloneDeep(cartToShow)].map(p => {
+            if(p.id === idx) {
+                p.qty = currentQty;
+            }
+            return p;
+        })
+        
         setCartToShow(newTest)
         localStorage.setItem('cartStorage', JSON.stringify(newTest))
         
     }
 
     const changedDelete = (idx) => {
-        setSelectedValues(prev => prev.filter((item, id) => id !== idx))
-        localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
+        // setSelectedValues(prev => prev.filter((item, id) => id !== idx))
+        // localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
         setCartToShow(prev => prev.filter((item, id) => id !== idx))
         localStorage.setItem('cartStorage', JSON.stringify(cartToShow.filter((i, id) => id !== idx)))
     }
@@ -81,7 +87,7 @@ function Cart ({deleteCart}) {
                                     <p className="text-gray-500">{`${item.gender}'s Shoes`}</p>
                                     <p className="text-gray-500">{`Size: ${item.size}`}</p>
                                     <span className="text-gray-500">Quanlity</span>
-                                    <select name={`select-${idx}`} value={selectedValues[idx]} intinial="true" onChange={(event) => handleSelect(event, idx)}>
+                                    <select name={`select-${idx}`} value={item.qty} intinial="true" onChange={(event) => handleSelect(event, item.id)}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -92,7 +98,7 @@ function Cart ({deleteCart}) {
                                     </button>
                                 </div>
                             </div>
-                            <p>{`${cartToShow[idx].price} $`}</p>
+                            <p>{`${item.price * item.qty} $`}</p>
                         </div>
                     )
                 })

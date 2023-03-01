@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../../data/ProductContext";
 
 function Products(props) {
-  const { product, searchProduct } = useContext(ProductContext);
+  const { product, searchProduct, setNumberLengthProduct } = useContext(ProductContext);
   // Tạo 1 mảng để chứa đựng các giá trị được filter, ví dụ khi click vào LifeStyle thì mảng những sản phẩm LifeStyle sẽ được lưu vào
   // Lý do dùng useRef thì lên GPT hỏi nó useRef là gì nó nói cho rõ
   // Nếu ở đây mà đặt cái biến arrGenderProducts = [], thì chọn LifeStyle lúc click vào checkbox Gender "Nam" thì component Products này sẽ render lại từ đầu
@@ -68,9 +68,9 @@ function Products(props) {
   function handleOnClick(item) {
     props.detailProduct(item);
   }
-
+  setNumberLengthProduct(dataToShow.length)
   return (
-    <div className="info grid grid-cols-3 gap-[50px]">
+    <div className="info grid grid-cols-3 gap-[50px] mt-[22px]">
       {dataToShow.map((item, index) => {
         return (
           <Link

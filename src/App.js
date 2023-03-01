@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import ProductDetails from './components/Product/ProductDetails';
 import HomePage from './pages/Home/HomePage';
 import Cart from './components/Cart';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Adminpage from './pages/Admin/Adminpage';
 import { data } from './data/Shoes';
 import { ProductContext } from './data/ProductContext';
@@ -21,6 +21,7 @@ function App() {
   const [cart, setCart] = useState([])
   const [searchProduct, setSearchProduct] = useState([])
   const [registered, setRegistered] = useState([])
+  const [numberLengthProduct, setNumberLengthProduct] = useState("")
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('dataStorage'))
@@ -29,7 +30,7 @@ function App() {
     }
   }, [])
   useEffect(() => {
-    const storedCategory = JSON.parse(localStorage.getItem('catogoryStorage'))
+    const storedCategory = JSON.parse(localStorage.getItem('categoryStorage'))
     if (storedCategory) {
       setCategory(storedCategory)
     }
@@ -44,12 +45,10 @@ function App() {
     const storedCart = JSON.parse(localStorage.getItem('cartStorage'))
     if (storedCart) {
       setCart(storedCart)
-      debug.current = storedCart
     }
   }, [])
   
   
-  let debug = useRef([])
   function addProduct(item) {
     setProduct([...product, item])
     localStorage.setItem('dataStorage', JSON.stringify([...product, item]))
@@ -69,26 +68,21 @@ function App() {
     console.log(productDataCart)
     if(productDataCart) {
       setCart([...productDataCart, product])
-      localStorage.setItem('cartStorage', JSON.stringify([...productDataCart, product]))
+      localStorage.setItem('cartStorage', JSON.stringify([...productDataCart, {...product, qty: 1}]))
+    } else {
+      setCart([...cart, product])
+      localStorage.setItem('cartStorage', JSON.stringify([...cart, {...product, qty: 1}]))
+
     }
-    // debug.current.push(product)
-    setCart([...product])
-    // setCart([...debug.current])
-    localStorage.setItem('cartStorage', JSON.stringify([...product]))
     
   }
   console.log(cart)
 
-  // function newCart(cart) {
-  //   debug.current = cart
-  //   setCart([...debug.current])
-  //   localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
-  // }
   
   function delProduct(itemDeleted){
-    debug.current = debug.current.filter((item, idx) => idx !== itemDeleted)
-    setCart([...debug.current])
-    localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
+    const productDataCart = JSON.parse(localStorage.getItem('cartStorage')).filter((item,idx) => idx !== itemDeleted)
+    setCart([...productDataCart])
+    localStorage.setItem('cartStorage', JSON.stringify([...productDataCart]))
   }
   function deletedData(item) {
     setProduct(prev => prev.filter(i => i.id !== item))
@@ -96,8 +90,8 @@ function App() {
   }
   return (
     <div>
-      <ProductContext.Provider value={{product, category, cart, gender, size, searchProduct, setSearchProduct,registered, setRegistered}}>
-        <Header cart={cart}/>
+      <ProductContext.Provider value={{numberLengthProduct, setNumberLengthProduct, product, category, cart, gender, size, searchProduct, setSearchProduct,registered, setRegistered}}>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />

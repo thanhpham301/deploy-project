@@ -32,7 +32,7 @@ function SigninBox () {
         setShowButtonLogOut(isAuthenticated)
     },[])
     useEffect(() => {
-        if(account.email === "t@gmail.com" && account.password === "886486821"){
+        if(account.email === "admin@gmail.com" && account.password === "886486821"){
             setShowButtonAdmin(true)
         }
         else {
@@ -110,14 +110,14 @@ function SigninBox () {
                     
                 </form>
             </div> :
-            <div>
+            <div className='mx-[20px]'>
                 {/* <span>Hi,{(account.email).slice(0,5)}{(account.email).length > 5 ? '...' : ''}</span> */}
                 <Link to="/">
-                    <button type='button' onClick={logout}>Log out</button>
+                    <button type='button' onClick={logout} className='text-[12px] p-[10px] mt-[5px] font-semibold hover:bg-gray-400 hover:text-white rounded-[20px]'>Log out</button>
                 </Link>
                 {showButtonAdmin &&
                     <Link to="/Admin">
-                        <button>Admin</button>
+                        <button className='ml-[20px] text-[12px] p-[10px] mt-[5px] font-semibold hover:bg-gray-400 hover:text-white rounded-[20px]'>Admin</button>
                     </Link>
                 }
                 
