@@ -17,7 +17,7 @@ function Slideshow() {
         className="mySlides fade"
         style={{ display: slideIndex === 0 ? "block" : "none" }}
       >
-        <div className="numbertext">1 / 3</div>
+        <div className="numbertext">1 / 4</div>
         <img
           src="https://cdn.shopify.com/s/files/1/1698/6315/articles/Serena_Williams_Nike_Ad_1445x.jpg?v=1536356940"
           alt=""
@@ -30,7 +30,7 @@ function Slideshow() {
         className="mySlides fade"
         style={{ display: slideIndex === 1 ? "block" : "none" }}
       >
-        <div className="numbertext">2 / 3</div>
+        <div className="numbertext">2 / 4</div>
         <img
           src="https://ichef.bbci.co.uk/news/976/cpsprodpb/B9FF/production/_117751674_satan-shoes1.jpg"
           alt=""
@@ -44,7 +44,7 @@ function Slideshow() {
         className="mySlides fade"
         style={{ display: slideIndex === 2 ? "block" : "none" }}
       >
-        <div className="numbertext">3 / 3</div>
+        <div className="numbertext">3 / 4</div>
         <img
           src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1000w,f_auto,q_auto:best/newscms/2018_36/2554476/180904-nike-ad-serena-se-329p.jpg"
           alt=""
