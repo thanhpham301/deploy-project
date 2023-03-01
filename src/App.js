@@ -74,7 +74,7 @@ function App() {
     // debug.current.push(product)
     setCart([...product])
     // setCart([...debug.current])
-    localStorage.setItem('cartStorage', JSON.stringify([...debug.current]))
+    localStorage.setItem('cartStorage', JSON.stringify([...product]))
     
   }
   console.log(cart)

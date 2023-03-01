@@ -3,7 +3,7 @@ import { ProductContext } from "../data/ProductContext";
 
 function Size ({cateKeyword, genderKeyword, updateSize}) {
   const {size} = useContext(ProductContext)
-  const [listSize, setListSize] = useState(size.map((item) => ({
+  const [listSize, setListSize] = useState(size.sort((a, b) => a - b).map((item) => ({
     label: item,
     isChecked: false
   })))

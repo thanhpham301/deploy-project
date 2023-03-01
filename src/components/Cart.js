@@ -17,12 +17,7 @@ function Cart ({deleteCart}) {
         setCartToShow(getCart)
         // setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
     },[cart])
-    // useEffect(() => {
-    //     const productCartSaved = JSON.parse(localStorage.getItem('productCart'))
-    //     if (productCartSaved) {
-    //         setCartToShow(productCartSaved)
-    //     }
-    // }, [])
+
     useEffect(() => {
         if(cart.length > 1 || cartToShow.length > 1 || selectedValues[0] > 1){
             setFee("Free")
@@ -44,9 +39,13 @@ function Cart ({deleteCart}) {
         const storedSelected = JSON.parse(localStorage.getItem('selectedStorage'))
         if (storedSelected) {
             setSelectedValues(storedSelected)
+            
         }
     }, [])
-    
+
+    useEffect(() => {
+        setSumToShow((cartToShow.map(item => item.price)).reduce((total, num) => total + num, 0))
+    },[cartToShow])
     const handleSelect = (event, idx) => {
         const newSelectedValues = [...selectedValues]
         newSelectedValues[idx] = Number(event.target.value) 
