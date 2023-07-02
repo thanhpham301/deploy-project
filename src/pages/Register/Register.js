@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ProductContext } from "../../data/ProductContext";
-import { Link } from "react-router-dom";
 
 function RegisterPage() {
   const {setRegistered} = useContext(ProductContext)
@@ -94,15 +93,12 @@ function RegisterPage() {
             />
          </div>
         <div className="flex items-center justify-between">
-          
             <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
               >
               Đăng ký
-              </button>
-          
-            
+            </button>
         </div>
       </form>
     </div>

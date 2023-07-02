@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../data/ProductContext';
 
 function SigninBox () {
-    const {registered} = useContext(ProductContext)
+    const {registered, setCart} = useContext(ProductContext)
+    const {setIdAccount} = useContext(ProductContext)
+    const {setRefreshCart} = useContext(ProductContext)
+
     const [emailUser, setEmail] = useState("")
     const [passwordUser, setPassword] = useState("")
     const [account, setAccount] = useState("")
@@ -48,19 +51,18 @@ function SigninBox () {
     }
     function handleSubmitSignin(event) {
         event.preventDefault();
+        const accountSigned = (accRegistered.filter(i => i.email === emailUser && i.password === passwordUser))
         const foundUser = accRegistered.find(user => user.email === emailUser && user.password === passwordUser)
         if (!emailUser || !passwordUser) {
             alert("Không được bỏ trống email hoặc password");
             return
         }
         else if (foundUser){
-            const userInfor = {
-                email: emailUser,
-                password: passwordUser
-            }
-            setAccount(userInfor)
-            localStorage.setItem('accountStorage', JSON.stringify(userInfor))
+            setAccount(...accountSigned)
+            localStorage.setItem('accountStorage', JSON.stringify(...accountSigned))
+            setIdAccount(...accountSigned)
             setShowButtonLogOut(false)
+            setRefreshCart(true)
             localStorage.setItem('showButtonStorage', false)
             setEmail("")
             setPassword("")
@@ -76,6 +78,8 @@ function SigninBox () {
     function logout() {
         setShowButtonLogOut(true)
         setAccount("")
+        setRefreshCart(false)
+        setCart([])
         localStorage.removeItem('accountStorage')
         localStorage.setItem('showButtonStorage', true)
     }

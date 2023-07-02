@@ -21,6 +21,8 @@ function App() {
   const [cart, setCart] = useState([])
   const [searchProduct, setSearchProduct] = useState([])
   const [registered, setRegistered] = useState([])
+  const [idAccount, setIdAccount] = useState("")
+  const [reFreshCart, setRefreshCart] = useState(true)
   const [numberLengthProduct, setNumberLengthProduct] = useState("")
 
   useEffect(() => {
@@ -42,12 +44,17 @@ function App() {
     }
   }, [])
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cartStorage'))
-    if (storedCart) {
+    // const storedCart = JSON.parse(localStorage.getItem('cartStorage'))
+    const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
+    if (storedAccount) {
+      const storedCart = JSON.parse(localStorage.getItem(storedAccount.id))
       setCart(storedCart)
     }
   }, [])
-  
+  // useEffect(() => {
+  //   const productDataCart = JSON.parse(localStorage.getItem(idAccount.id))
+  //   setCart([...productDataCart])
+  // }, [idAccount])
   
   function addProduct(item) {
     setProduct([...product, item])
@@ -64,14 +71,20 @@ function App() {
   }
 
   function cartProduct(product) {
-    const productDataCart = JSON.parse(localStorage.getItem('cartStorage'))
+    // const productDataCart = JSON.parse(localStorage.getItem('cartStorage'))
+    const productDataCart = JSON.parse(localStorage.getItem(idAccount.id))
+
     console.log(productDataCart)
     if(productDataCart) {
       setCart([...productDataCart, product])
-      localStorage.setItem('cartStorage', JSON.stringify([...productDataCart, {...product, qty: 1}]))
+      // localStorage.setItem('cartStorage', JSON.stringify([...productDataCart, {...product, qty: 1}]))
+      localStorage.setItem(idAccount.id, JSON.stringify([...productDataCart, {...product, qty: 1}]))
+
     } else {
       setCart([...cart, product])
-      localStorage.setItem('cartStorage', JSON.stringify([...cart, {...product, qty: 1}]))
+      // localStorage.setItem('cartStorage', JSON.stringify([...cart, {...product, qty: 1}]))
+      localStorage.setItem(idAccount.id, JSON.stringify([...cart, {...product, qty: 1}]))
+
 
     }
     
@@ -80,9 +93,13 @@ function App() {
 
   
   function delProduct(itemDeleted){
-    const productDataCart = JSON.parse(localStorage.getItem('cartStorage')).filter((item,idx) => idx !== itemDeleted)
+    // const productDataCart = JSON.parse(localStorage.getItem('cartStorage')).filter((item,idx) => idx !== itemDeleted)
+    const productDataCart = JSON.parse(localStorage.getItem(idAccount.id)).filter((item,idx) => idx !== itemDeleted)
+
     setCart([...productDataCart])
-    localStorage.setItem('cartStorage', JSON.stringify([...productDataCart]))
+    // localStorage.setItem('cartStorage', JSON.stringify([...productDataCart]))
+    localStorage.setItem(idAccount.id, JSON.stringify([...productDataCart]))
+
   }
   function deletedData(item) {
     setProduct(prev => prev.filter(i => i.id !== item))
@@ -90,7 +107,8 @@ function App() {
   }
   return (
     <div>
-      <ProductContext.Provider value={{numberLengthProduct, setNumberLengthProduct, product, category, cart, gender, size, searchProduct, setSearchProduct,registered, setRegistered}}>
+      <ProductContext.Provider value={{numberLengthProduct, setNumberLengthProduct, product, category, cart, setCart, gender, size, 
+        searchProduct, setSearchProduct,registered, setRegistered, setIdAccount, reFreshCart, setRefreshCart}}>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

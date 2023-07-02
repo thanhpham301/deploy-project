@@ -3,7 +3,7 @@ import * as _ from "lodash"
 import { ProductContext } from "../data/ProductContext";
 
 function Cart ({deleteCart}) {
-    const {cart} = useContext(ProductContext)
+    const {cart, reFreshCart} = useContext(ProductContext)
     const [cartToShow, setCartToShow] = useState([])
     const [sumToShow, setSumToShow] = useState()
     const [total, setTotal] = useState("")
@@ -13,7 +13,10 @@ function Cart ({deleteCart}) {
     // );
     console.log(cartToShow)
     useEffect(()=> {
-        const getCart = JSON.parse(localStorage.getItem('cartStorage'))
+        // const getCart = JSON.parse(localStorage.getItem('cartStorage'))
+        const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
+        const getCart = JSON.parse(localStorage.getItem(storedAccount.id))
+
         setCartToShow(getCart)
         // setSumToShow((cart.map(item => item.price)).reduce((total, num) => total + num, 0))
     },[cart])
@@ -29,7 +32,10 @@ function Cart ({deleteCart}) {
     // }, [])
 
     useEffect(() => {
-        const getFromCart = JSON.parse(localStorage.getItem('cartStorage'))
+        // const getFromCart = JSON.parse(localStorage.getItem('cartStorage'))
+        const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
+        const getFromCart = JSON.parse(localStorage.getItem(storedAccount.id))
+
         if(getFromCart) {
             const sumResult = (getFromCart.map(item => item.price * item.qty)).reduce((total, num) => total + num, 0)
         setSumToShow(sumResult)
@@ -52,7 +58,7 @@ function Cart ({deleteCart}) {
 
     const handleSelect = (event, idx) => {
         const currentQty =  Number(event.target.value) 
-
+        const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
         const newTest = [..._.cloneDeep(cartToShow)].map(p => {
             if(p.id === idx) {
                 p.qty = currentQty;
@@ -61,17 +67,26 @@ function Cart ({deleteCart}) {
         })
         
         setCartToShow(newTest)
-        localStorage.setItem('cartStorage', JSON.stringify(newTest))
+        // localStorage.setItem('cartStorage', JSON.stringify(newTest))
+        localStorage.setItem(storedAccount.id, JSON.stringify(newTest))
+
         
     }
 
     const changedDelete = (idx) => {
         // setSelectedValues(prev => prev.filter((item, id) => id !== idx))
         // localStorage.setItem('selectedStorage', JSON.stringify(selectedValues.filter((element, index) => index !== idx)))
+        const storedAccount = JSON.parse(localStorage.getItem('accountStorage'))
         setCartToShow(prev => prev.filter((item, id) => id !== idx))
-        localStorage.setItem('cartStorage', JSON.stringify(cartToShow.filter((i, id) => id !== idx)))
+        // localStorage.setItem('cartStorage', JSON.stringify(cartToShow.filter((i, id) => id !== idx)))
+        localStorage.setItem(storedAccount.id, JSON.stringify(cartToShow.filter((i, id) => id !== idx)))
+
     }
-    
+    useEffect(() => {
+        if(reFreshCart === false){
+            setCartToShow([])
+        }
+    },[reFreshCart])
     return (
         <div className="flex justify-center flex-wrap">
             <div className="mr-[70px]">
